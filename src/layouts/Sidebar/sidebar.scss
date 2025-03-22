@@ -1,0 +1,31 @@
+@use "../../styles/variables.scss" as *;
+
+.MuiDrawer-paper {
+  background-color: $maincolor !important;
+  color: white !important;
+}
+.custom-icon {
+  color: white;
+}
+.personal-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  padding: 10px;
+}
+.css-cokf1l-MuiListItemIcon-root {
+  min-width: 35px !important;
+}
+.active {
+  background-color: #6c55ff !important;
+  border-left: 4px solid white !important;
+  padding-left: calc(16px - 4px) !important;
+}
