@@ -1,12 +1,12 @@
-# React + Vite
+1.Ilk once dev brancha kecerek branchi update edirik
+git checkout dev
+git pull origin dev
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2.Oz branchinizi dev branch ile update edin
+git checkout branch1  
+git merge dev
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3.Oz branchinizi dev branchina merge edin
+git checkout dev
+git merge branch1
+git push origin dev

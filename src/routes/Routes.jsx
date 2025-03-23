@@ -3,6 +3,7 @@ import Login from "../pages/Login";
 import NoPage from "../pages/NoPage";
 import Home from "../pages/Home";
 import MainPanel from "../pages/MainPanel";
+import ForgotPassword from "../pages/ForgotPassword";
 export const routes = [
   {
     path: "/",
@@ -21,6 +22,10 @@ export const routes = [
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
   },
   {
     path: "*",

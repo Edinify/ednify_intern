@@ -1,0 +1,17 @@
+.login-btn {
+  background-color: #462aff;
+  color: #fff;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s;
+}
+.login-btn:hover {
+  background-color: #001ef0;
+}
+.login-btn:active {
+  background-color: #0005e7;
+}/*# sourceMappingURL=button.css.map */
