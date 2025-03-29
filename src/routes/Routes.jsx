@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import MainPanel from "../pages/MainPanel";
 import ForgotPassword from "../pages/ForgotPassword";
 import Classes from "../pages/Classes";
+import Teachers from "../pages/Teachers";
 export const routes = [
   {
     path: "/",
@@ -21,6 +22,10 @@ export const routes = [
       {
         path: "/classes",
         element: <Classes />,
+      },
+      {
+        path: "/teachers",
+        element: <Teachers />,
       },
     ],
   },
