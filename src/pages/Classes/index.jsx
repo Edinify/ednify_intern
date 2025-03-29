@@ -16,7 +16,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
-import { Button } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+
 import "./classes.scss";
 const style = {
   position: "absolute",
@@ -108,6 +109,16 @@ const Classes = () => {
               aria-describedby="modal-modal-description"
             >
               <Box sx={style}>
+                <IconButton
+                  onClick={handleClose}
+                  sx={{
+                    position: "absolute",
+                    top: 8,
+                    right: 8,
+                  }}
+                >
+                  <CloseIcon />
+                </IconButton>
                 <Typography variant="h6" sx={{ textAlign: "center" }}>
                   Add class
                 </Typography>
@@ -185,6 +196,16 @@ const Classes = () => {
 
           <Modal open={openEdit} onClose={handleCloseEdit}>
             <Box sx={style}>
+              <IconButton
+                onClick={handleCloseEdit}
+                sx={{
+                  position: "absolute",
+                  top: 8,
+                  right: 8,
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
               <Typography variant="h6" sx={{ textAlign: "center" }}>
                 Edit Class
               </Typography>
