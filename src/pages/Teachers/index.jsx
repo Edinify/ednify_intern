@@ -37,7 +37,7 @@ const styleadd = {
   bgcolor: "background.paper",
   boxShadow: 24,
   borderRadius: 2,
-  p: 5,
+  p: 2,
   display: "flex",
   flexDirection: "column",
   gap: 2,
@@ -207,6 +207,7 @@ const Teachers = () => {
                   id="outlined-basic"
                   label="Birthday"
                   variant="outlined"
+                  // type="date"
                   className="outlined-basic"
                 />
               </div>
