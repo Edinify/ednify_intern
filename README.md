@@ -6,7 +6,13 @@ git pull origin dev
 git checkout branch1  
 git merge dev
 
-3.Oz branchinizi dev branchina merge edin
+3.Oz branchini push et
+git add .
+git commit
+git push origin branch1
+
+
+4.Oz branchinizi dev branchina merge edin
 git checkout dev
 git merge branch1
 git push origin dev
