@@ -1,0 +1,97 @@
+@use "../../styles/variables.scss" as *;
+.classes-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .search-section {
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    .outlined-basic {
+      width: 100%;
+    }
+    .add-button {
+      background-color: $primary500;
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      width: 90px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      height: 100%;
+      transition: all 0.3s;
+      &:hover {
+        background-color: $primary700;
+      }
+      &:active {
+        background-color: $primary900;
+      }
+    }
+    .search-container {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      border-radius: 5px;
+      padding: 5px 10px;
+      width: 280px;
+    }
+    .search-icon {
+      font-size: 20px;
+      color: #8c8c8c;
+    }
+
+    .search-input {
+      border: none;
+      outline: none;
+      flex: 1;
+      padding: 5px;
+      font-size: 16px;
+    }
+  }
+  .class-section {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+}
+.button-container {
+  display: flex;
+  justify-content: end;
+  .create-button {
+    background-color: $primary500;
+    color: #fff;
+    border: none;
+    padding: 15px 24px;
+    width: 90px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    height: 100%;
+    transition: all 0.3s;
+    &:hover {
+      background-color: $primary700;
+    }
+    &:active {
+      background-color: $primary900;
+    }
+  }
+}
+.cancel-button {
+  color: $primary500;
+  border: 2px solid $primary500;
+  background-color: white;
+  border-radius: 4px;
+  padding: 9px 40px;
+  cursor: pointer;
+}
+.delete-button {
+  color: white;
+  border: none;
+  background-color: #f03a2a;
+  border-radius: 4px;
+  padding: 10px 41px;
+  cursor: pointer;
+}
