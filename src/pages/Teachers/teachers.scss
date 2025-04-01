@@ -1,0 +1,102 @@
+@use "../../styles/variables.scss" as *;
+.teachers-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .search-section {
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    .outlined-basic {
+      width: 100%;
+    }
+    .add-button {
+      background-color: $primary500;
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      width: 90px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      height: 100%;
+      transition: all 0.3s;
+      &:hover {
+        background-color: $primary700;
+      }
+      &:active {
+        background-color: $primary900;
+      }
+    }
+    .search-container {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      border-radius: 5px;
+      padding: 5px 10px;
+      width: 280px;
+    }
+    .search-icon {
+      font-size: 20px;
+      color: #8c8c8c;
+    }
+
+    .search-input {
+      border: none;
+      outline: none;
+      flex: 1;
+      padding: 5px;
+      font-size: 16px;
+    }
+    .left-container {
+      display: flex;
+      gap: 7px;
+      .select-container {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        border-radius: 5px;
+        padding: 5px 10px;
+        width: 280px;
+        .select-input {
+          border: none;
+          outline: none;
+          flex: 1;
+          padding: 5px;
+          font-size: 16px;
+          color: #8c8c8c;
+        }
+      }
+    }
+  }
+
+  .teachers-section {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+}
+.input-rows {
+  display: flex;
+  gap: 7px;
+}
+.radio-input {
+  padding: none;
+  border: 1px solid rgb(207, 206, 206);
+  border-radius: 5px;
+}
+.outlined-basic .MuiOutlinedInput-root {
+  height: 30px !important;
+  align-items: center !important;
+}
+
+.outlined-basic .MuiInputLabel-root {
+  font-size: 10px !important;
+  align-items: center !important;
+  top: -8px !important;
+}
+.outlined-basic .MuiInputLabel-shrink {
+  top: 0px;
+}
