@@ -78,25 +78,69 @@
     background-color: white;
   }
 }
-.input-rows {
-  display: flex;
-  gap: 7px;
+
+.col-6 {
+  flex: 0 0 49%;
 }
+
 .radio-input {
   padding: none;
   border: 1px solid rgb(207, 206, 206);
   border-radius: 5px;
 }
+
+.add-list {
+  display: flex;
+  flex-direction: column;
+  .first-section {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+  .add-button {
+    color: $primary500;
+    border: 1px solid $primary500;
+    background-color: white;
+    border-radius: 4px;
+    padding: 8px 20px;
+    cursor: pointer;
+  }
+  .del-button {
+    border-radius: 50%;
+    height: 17px;
+    width: 17px;
+    background-color: white;
+    border: 1.5px solid red;
+    color: red;
+    cursor: pointer;
+  }
+}
+.salary {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+strong {
+  color: grey;
+}
+// .personal-info {
+//   display: flex;
+// }
 // .outlined-basic .MuiOutlinedInput-root {
-//   height: 30px !important;
+//   height: 40px !important;
+//   display: flex !important;
+//   justify-content: center;
 //   align-items: center !important;
 // }
-
 // .outlined-basic .MuiInputLabel-root {
-//   font-size: 10px !important;
+//   font-size: 14px !important;
 //   align-items: center !important;
-//   top: -8px !important;
+//   top: -5px !important;
 // }
 // .outlined-basic .MuiInputLabel-shrink {
-//   top: 0px;
+//   top: -7px;
 // }
+.row-input {
+  gap: 9px;
+}
