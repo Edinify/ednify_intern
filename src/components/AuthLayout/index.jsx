@@ -1,6 +1,5 @@
 import React from "react";
 import "./authLayout.scss";
-import "../../styles/grid.scss";
 import Dashboard1 from "../../assets/images/Dashboard 1.png";
 
 const AuthLayout = ({ children }) => {

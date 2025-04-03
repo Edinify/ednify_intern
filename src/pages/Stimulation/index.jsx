@@ -1,6 +1,6 @@
 import React from "react";
 
-function stimulation() {
+function Stimulation() {
   return (
     <div>
       <div class="dashboard"></div>
@@ -9,4 +9,4 @@ function stimulation() {
   );
 }
 
-export default stimulation;
+export default Stimulation;
