@@ -311,30 +311,12 @@ const Teachers = () => {
                 </div>
               </FormGroup>
               <div>
-                {/* <FormControl sx={{ m: 1, minWidth: 120 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
-                    Age
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    // value={age}
-                    label="Age"
-                    // onChange={handleChange}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem
-                    // value={10}
-                    >
-                      Ten
-                    </MenuItem>
-                    <MenuItem>Twenty</MenuItem>
-                    <MenuItem>Thirty</MenuItem>
-                  </Select>
-                  <FormHelperText>With label + helper text</FormHelperText>
-                </FormControl> */}
+                <div className="select-container">
+                  <select className="select-input">
+                    <option value="someOption">Active</option>
+                    <option value="otherOption">Other option</option>
+                  </select>
+                </div>
               </div>
               <div className="button-container">
                 <button className="create-button">Create</button>
