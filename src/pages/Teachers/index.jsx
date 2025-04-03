@@ -26,7 +26,13 @@ import FormGroup from "@mui/material/FormGroup";
 import Checkbox from "@mui/material/Checkbox";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
-import FormHelperText from "@mui/material/FormHelperText";
+import RemoveIcon from "@mui/icons-material/Remove";
+import InputAdornment from "@mui/material/InputAdornment";
+import OutlinedInput from "@mui/material/OutlinedInput";
+
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import EditIcon from "@mui/icons-material/Edit";
 import "./teachers.scss";
 const styleadd = {
   position: "absolute",
@@ -118,12 +124,9 @@ const Teachers = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const openOption = Boolean(anchorEl);
   const [value, setValue] = React.useState("female");
-
+  const [openMore, setOpenMore] = useState(false);
   const handleChange = (event) => {
     setValue(event.target.value);
-  };
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
   };
 
   const [openEdit, setOpenEdit] = useState(false);
@@ -156,6 +159,27 @@ const Teachers = () => {
   const handleCloseDelete = () => {
     setOpenDelete(false);
   };
+  const handleCloseMore = () => {
+    setOpenMore(false);
+  };
+
+  const [selectedValue, setSelectedValue] = useState("");
+  const [items, setItems] = useState([]);
+
+  const handleChangeAdd = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
+  const handleAdd = () => {
+    if (selectedValue && !items.includes(selectedValue)) {
+      setItems([...items, selectedValue]);
+      setSelectedValue("");
+    }
+  };
+  const handleDelete = (itemToDelete) => {
+    setItems(items.filter((item) => item !== itemToDelete));
+  };
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="teachers-container">
@@ -196,48 +220,65 @@ const Teachers = () => {
               <Typography variant="h6" sx={{ textAlign: "center" }}>
                 Add teacher
               </Typography>
-              <div className="input-rows">
-                <TextField
-                  id="outlined-basic"
-                  label="Full name"
-                  variant="outlined"
-                  className="outlined-basic"
-                />
-                <TextField
-                  id="outlined-basic"
-                  label="Birthday"
-                  variant="outlined"
-                  // type="date"
-                  className="outlined-basic"
-                />
+              <div className="input-rows row row-input">
+                <div className="col-6 outlined-basic">
+                  <TextField
+                    id="outlined-basic"
+                    label="Full name"
+                    variant="outlined"
+                    fullWidth
+                  />
+                </div>
+                <div className="col-6 outlined-basic">
+                  <TextField
+                    id="outlined-basic"
+                    label="Birthday"
+                    variant="outlined"
+                    fullWidth
+                  />
+                </div>
               </div>
-              <div className="input-rows">
-                <TextField
-                  id="outlined-basic"
-                  label="FIN"
-                  variant="outlined"
-                  className="outlined-basic"
-                />
-                <TextField
-                  id="outlined-basic"
-                  label="Seriya"
-                  variant="outlined"
-                  className="outlined-basic"
-                />
+
+              <div className="input-rows row row-input">
+                <div className="col-6 outlined-basic">
+                  <TextField
+                    id="outlined-basic"
+                    label="FIN"
+                    variant="outlined"
+                    className="outlined-basic"
+                    fullWidth
+                  />
+                </div>
+                <div className="col-6 outlined-basic">
+                  <TextField
+                    id="outlined-basic"
+                    label="Seriya"
+                    variant="outlined"
+                    className="outlined-basic"
+                    fullWidth
+                  />
+                </div>
               </div>
-              <div className="input-rows">
-                <TextField
-                  id="outlined-basic"
-                  label="Mobile number"
-                  variant="outlined"
-                  className="outlined-basic"
-                />
-                <TextField
-                  id="outlined-basic"
-                  label="Work experience"
-                  variant="outlined"
-                  className="outlined-basic"
-                />
+
+              <div className="input-rows row row-input">
+                <div className="col-6 outlined-basic">
+                  <TextField
+                    id="outlined-basic"
+                    label="Mobile number"
+                    variant="outlined"
+                    className="outlined-basic"
+                    fullWidth
+                  />
+                </div>
+                <div className="col-6 outlined-basic">
+                  <TextField
+                    id="outlined-basic"
+                    label="Work experience"
+                    variant="outlined"
+                    className="outlined-basic"
+                    fullWidth
+                  />
+                </div>
               </div>
               <TextField
                 id="outlined-basic"
@@ -252,26 +293,26 @@ const Teachers = () => {
                   name="controlled-radio-buttons-group"
                   value={value}
                   onChange={handleChange}
+                  className="row row-input"
                   sx={{
                     display: "flex",
                     flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "space-between",
                   }}
                 >
                   <FormControlLabel
                     value="married"
                     control={<Radio />}
                     label="Married"
-                    className="radio-input"
-                    sx={{ margin: 0, width: "49%" }}
+                    className="radio-input col-6"
+                    sx={{ margin: 0 }}
                   />
+
                   <FormControlLabel
                     value="single"
                     control={<Radio />}
                     label="Single"
-                    className="radio-input"
-                    sx={{ margin: 0, width: "49%" }}
+                    className="radio-input col-6"
+                    sx={{ margin: 0 }}
                   />
                 </RadioGroup>
               </FormControl>
@@ -310,13 +351,141 @@ const Teachers = () => {
                   />
                 </div>
               </FormGroup>
-              <div>
-                <div className="select-container">
-                  <select className="select-input">
-                    <option value="someOption">Active</option>
-                    <option value="otherOption">Other option</option>
-                  </select>
+              <div className="add-list">
+                <div className="first-section">
+                  <FormControl sx={{ m: 0, minWidth: "85%" }}>
+                    <InputLabel id="demo-simple-select-helper-label">
+                      Class
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-helper-label"
+                      id="demo-simple-select-helper"
+                      value={selectedValue}
+                      onChange={handleChangeAdd}
+                    >
+                      <MenuItem value="Ten">Ten</MenuItem>
+                      <MenuItem value="Twenty">Twenty</MenuItem>
+                      <MenuItem value="Thirty">Thirty</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <button className="add-button" onClick={handleAdd}>
+                    Add
+                  </button>
                 </div>
+                <ol
+                  style={{
+                    listStyle: "none",
+                    counterReset: "list-counter",
+                  }}
+                >
+                  {items.map((item, index) => (
+                    <li
+                      key={index}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        width: "85%",
+                        counterIncrement: "list-counter",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      <span style={{ marginRight: "4px" }}>{index + 1}.</span>
+                      <span style={{ flexGrow: 1 }}>{item}</span>
+                      <RemoveIcon
+                        className="del-button"
+                        onClick={() => handleDelete(item)}
+                      />
+                    </li>
+                  ))}
+                </ol>
+
+                {/* <ol style={{ listStylePosition: "inside" }}>
+                  {items.map((item, index) => (
+                    <li
+                      key={index}
+                      style={{
+                        display: "list-item",
+                        width: "80%",
+                        // justifyContent: "space-between",
+                        // alignItems: "center",
+                      }}
+                    >
+                      {item}
+                      <RemoveIcon
+                        className="del-button"
+                        onClick={() => handleDelete(item)}
+                      />
+                    </li>
+                  ))}
+                </ol> */}
+              </div>
+
+              <div className="salary row ">
+                <TextField
+                  id="outlined-suffix-shrink"
+                  className="salary-input col-9"
+                  label="Salary"
+                  variant="outlined"
+                  slotProps={{
+                    input: {
+                      endAdornment: (
+                        <InputAdornment position="end">m</InputAdornment>
+                      ),
+                    },
+                  }}
+                />
+                <TextField
+                  select
+                  className="select-time col-3"
+                  defaultValue="Monthly"
+                  variant="standard"
+                  InputProps={{ disableUnderline: true }}
+                  sx={{
+                    minWidth: 80,
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    height: "56px",
+                    display: "flex",
+                    alignItems: "center",
+                    "& .MuiInputBase-root": {
+                      display: "flex",
+                      alignItems: "center",
+                      height: "100%",
+                    },
+                    "& .MuiSelect-select": {
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "10px 14px",
+                    },
+                    "& .MuiInputBase-input": { padding: "1" },
+                  }}
+                >
+                  <MenuItem value="Monthly">Monthly</MenuItem>
+                  <MenuItem value="Yearly">Yearly</MenuItem>
+                </TextField>
+              </div>
+
+              <div style={{ display: "flex", gap: "8px" }}>
+                <TextField label="Email" variant="outlined" fullWidth />
+                <TextField
+                  label="Password"
+                  type={showPassword ? "text" : "password"}
+                  variant="outlined"
+                  fullWidth
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={() => setShowPassword(!showPassword)}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
               </div>
               <div className="button-container">
                 <button className="create-button">Create</button>
@@ -409,6 +578,7 @@ const Teachers = () => {
                       cursor: "pointer",
                     }}
                     align="center"
+                    onClick={() => setOpenMore(true)}
                   >
                     More
                   </TableCell>
@@ -486,6 +656,128 @@ const Teachers = () => {
               <button className="delete-button" onClick={handleCloseDelete}>
                 Delete
               </button>
+            </Box>
+          </Box>
+        </Modal>
+
+        <Modal
+          open={openMore}
+          onClose={() => setOpenMore(false)}
+          BackdropProps={{
+            style: { backgroundColor: "transparent" },
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              width: 400,
+              bgcolor: "background.paper",
+              boxShadow: 10,
+              p: 2,
+              borderRadius: 2,
+            }}
+          >
+            <div>
+              <Typography variant="h6" component="h2" sx={{ marginBottom: 1 }}>
+                Personal Information
+              </Typography>
+              <div>
+                <IconButton
+                  onClick={handleCloseMore}
+                  sx={{
+                    position: "absolute",
+                    top: 8,
+                    right: 50,
+                    backgroundColor: "#462aff",
+                    color: "white",
+                    height: "33px",
+                    width: "33px",
+                  }}
+                >
+                  <EditIcon />
+                </IconButton>
+                <IconButton
+                  onClick={handleCloseMore}
+                  sx={{
+                    position: "absolute",
+                    top: 8,
+                    right: 8,
+                    backgroundColor: "#f2f2f2",
+                    height: "33px",
+                    width: "33px",
+                  }}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </div>
+            </div>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 1.5,
+                marginBottom: 3,
+              }}
+            >
+              <p>
+                <strong>Full name:</strong> Agababa Bagirov
+              </p>
+              <p>
+                <strong>Birthday:</strong> 27.11.1997
+              </p>
+              <p>
+                <strong>FIN:</strong> 45ABCDE
+              </p>
+              <p>
+                <strong>Seria number:</strong> AZE 12345678
+              </p>
+              <p>
+                <strong>Health status:</strong> Healthy
+              </p>
+              <p>
+                <strong>Education:</strong> Azerbaijan school, 8th grade
+              </p>
+              <p>
+                <strong>Mother:</strong> Naila, +994 55 666 77 88
+              </p>
+              <p>
+                <strong>Father:</strong> Yaqub, +994 55 666 77 88
+              </p>
+              <p>
+                <strong>Phone number:</strong> +994 55 666 77 88
+              </p>
+              <p>
+                <strong>Email:</strong> agababa@gmail.com
+              </p>
+              <p>
+                <strong>Address:</strong> N.Narimanov, 15B
+              </p>
+            </Box>
+
+            <Typography variant="h6" component="h2" sx={{ marginBottom: 1 }}>
+              Education information
+            </Typography>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
+              <p>
+                <strong>Class 1:</strong> Programming,{" "}
+                <span style={{ color: "blue" }}>15</span>
+              </p>
+              <p>
+                <strong>Class 2:</strong> Digital Art,{" "}
+                <span style={{ color: "blue" }}>4</span>
+              </p>
+              <p>
+                <strong>Department:</strong> AZ, EN
+              </p>
+              <p>
+                <strong>Status:</strong>{" "}
+                <span style={{ color: "green" }}>Active</span>
+              </p>
+              <p>
+                <strong>Joined:</strong> 27.11.2023
+              </p>
             </Box>
           </Box>
         </Modal>
