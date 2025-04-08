@@ -1,13 +1,19 @@
-.header {
+.header-container {
+  background-color: white;
+  border-radius: 8px;
+  width: 100%;
   display: flex;
-  width: 96%;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
-  margin: 16px;
-  border-radius: 8px;
+  padding: 9px 16px;
   .header-icons {
     display: flex;
-    gap: 5px;
+    align-items: center;
+    gap: 12px;
+    color: grey;
   }
+}
+.header {
+  width: 96%;
+  margin: 16px;
 }

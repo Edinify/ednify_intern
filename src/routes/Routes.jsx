@@ -6,6 +6,7 @@ import MainPanel from "../pages/MainPanel";
 import ForgotPassword from "../pages/ForgotPassword";
 import Classes from "../pages/Classes";
 import Teachers from "../pages/Teachers";
+import Students from "../pages/Students";
 import Finance from "../pages/Finance";
 import Stimulation from "../pages/Stimulation";
 export const routes = [
@@ -28,6 +29,10 @@ export const routes = [
       {
         path: "/teachers",
         element: <Teachers />,
+      },
+      {
+        path: "/students",
+        element: <Students />,
       },
       {
         path: "/finance",

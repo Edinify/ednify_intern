@@ -1,5 +1,6 @@
 @use "../../styles/variables.scss" as *;
-.teachers-container {
+
+.students-container {
   width: 100%;
   display: flex;
   align-items: center;
@@ -77,53 +78,4 @@
     height: 100%;
     background-color: white;
   }
-}
-
-.col-6 {
-  flex: 0 0 49%;
-}
-
-.radio-input {
-  padding: none;
-  border: 1px solid rgb(207, 206, 206);
-  border-radius: 5px;
-}
-
-.add-list {
-  display: flex;
-  flex-direction: column;
-  .first-section {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    margin-bottom: 5px;
-  }
-  .add-button {
-    color: $primary500;
-    border: 1px solid $primary500;
-    background-color: white;
-    border-radius: 4px;
-    padding: 8px 20px;
-    cursor: pointer;
-  }
-  .del-button {
-    border-radius: 50%;
-    height: 17px;
-    width: 17px;
-    background-color: white;
-    border: 1.5px solid red;
-    color: red;
-    cursor: pointer;
-  }
-}
-.salary {
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-strong {
-  color: grey;
-}
-.row-input {
-  gap: 9px;
 }
