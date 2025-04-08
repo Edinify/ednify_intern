@@ -31,7 +31,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import EditIcon from "@mui/icons-material/Edit";
-import "./teachers.scss";
+import "./students.scss";
 const styleadd = {
   position: "absolute",
   top: "50%",
@@ -78,47 +78,67 @@ const styledelete = {
   gap: 2,
 };
 
-function createData(teacherName, className, email, mobileNumber, salary) {
-  return { teacherName, className, email, mobileNumber, salary };
+function createData(
+  studentName,
+  motherName,
+  fatherName,
+  className,
+  motherMobileNumber,
+  fatherMobileNumber
+) {
+  return {
+    studentName,
+    motherName,
+    fatherName,
+    className,
+    motherMobileNumber,
+    fatherMobileNumber,
+  };
 }
 const rows = [
   createData(
     "Agababa Baghirov",
+    "Naila",
+    "Yaqub",
     "Robotics",
-    "agababa@gmail.com",
     "+994 55 666 77 88",
-    2400
+    "+994 55 666 77 88"
   ),
   createData(
     "Shahin Mammadov",
+    "Leyla",
+    "Elshan",
     "Programming",
-    "lorem@gmail.com",
+    "+994 55 666 77 88",
     "+994 55 666 77 88",
     3700
   ),
   createData(
     "Nargiz Aliyeva",
+    "Aynur",
+    "Elshan",
     "Digital Art",
-    "lorem@gmail.com",
     "+994 55 666 77 88",
-    2400
+    "+994 55 666 77 88"
   ),
   createData(
     "Lala Suleymanli",
+    "Aynur",
+    "Elshan",
     "Science",
-    "lorem@gmail.com",
     "+994 55 666 77 88",
-    6700
+    "+994 55 666 77 88"
   ),
   createData(
     "Eyyub Agalarov",
+    "Aynur",
+    "Elshan",
     "English",
-    "lorem@gmail.com",
     "+994 55 666 77 88",
-    "35 (saatliq)"
+    "+994 55 666 77 88"
   ),
 ];
-const Teachers = () => {
+const Students = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -132,11 +152,11 @@ const Teachers = () => {
 
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
-  const [selectedTeacher, setSelectedTeacher] = useState("");
+  const [selectedStudent, setSelectedStudent] = useState("");
 
-  const handleMenuClick = (event, teacherName) => {
+  const handleMenuClick = (event, studentName) => {
     setAnchorEl(event.currentTarget);
-    setSelectedTeacher(teacherName);
+    setSelectedStudent(studentName);
   };
 
   const handleCloseMenu = () => {
@@ -181,9 +201,8 @@ const Teachers = () => {
     setItems(items.filter((item) => item !== itemToDelete));
   };
   const [showPassword, setShowPassword] = useState(false);
-
   return (
-    <div className="teachers-container">
+    <div className="students-container">
       <div className="search-section">
         <div className="left-container">
           <div className="search-container">
@@ -400,26 +419,6 @@ const Teachers = () => {
                     </li>
                   ))}
                 </ol>
-
-                {/* <ol style={{ listStylePosition: "inside" }}>
-                  {items.map((item, index) => (
-                    <li
-                      key={index}
-                      style={{
-                        display: "list-item",
-                        width: "80%",
-                        // justifyContent: "space-between",
-                        // alignItems: "center",
-                      }}
-                    >
-                      {item}
-                      <RemoveIcon
-                        className="del-button"
-                        onClick={() => handleDelete(item)}
-                      />
-                    </li>
-                  ))}
-                </ol> */}
               </div>
 
               <div className="salary row ">
@@ -500,7 +499,23 @@ const Teachers = () => {
           <Table sx={{ "& td, & th": { padding: "10px 20px" } }}>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ color: "grey" }}>Teacher name</TableCell>
+                <TableCell sx={{ color: "grey" }}>Student name</TableCell>
+                <TableCell
+                  sx={{
+                    color: "grey",
+                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  Mother name
+                </TableCell>
+                <TableCell
+                  sx={{
+                    color: "grey",
+                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  Father name
+                </TableCell>
                 <TableCell
                   sx={{
                     color: "grey",
@@ -515,7 +530,7 @@ const Teachers = () => {
                     borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                  Email
+                  Mother mobile number
                 </TableCell>
                 <TableCell
                   sx={{
@@ -523,15 +538,7 @@ const Teachers = () => {
                     borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                  Mobile number
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  Salary
+                  Father mobile number
                 </TableCell>
                 <TableCell
                   sx={{
@@ -549,8 +556,18 @@ const Teachers = () => {
             </TableHead>
             <TableBody>
               {rows.map((row) => (
-                <TableRow key={row.teacherName}>
-                  <TableCell>{row.teacherName}</TableCell>
+                <TableRow key={row.studentName}>
+                  <TableCell>{row.studentName}</TableCell>
+                  <TableCell
+                    sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
+                  >
+                    {row.motherName}
+                  </TableCell>
+                  <TableCell
+                    sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
+                  >
+                    {row.fatherName}
+                  </TableCell>
                   <TableCell
                     sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
                   >
@@ -559,17 +576,12 @@ const Teachers = () => {
                   <TableCell
                     sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
                   >
-                    {row.email}
+                    {row.motherMobileNumber}
                   </TableCell>
                   <TableCell
                     sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
                   >
-                    {row.mobileNumber}
-                  </TableCell>
-                  <TableCell
-                    sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
-                  >
-                    {row.salary}
+                    {row.fatherMobileNumber}
                   </TableCell>
                   <TableCell
                     sx={{
@@ -591,7 +603,7 @@ const Teachers = () => {
                     align="center"
                   >
                     <IconButton
-                      onClick={(e) => handleMenuClick(e, row.teacherName)}
+                      onClick={(e) => handleMenuClick(e, row.studentName)}
                     >
                       <MoreVertIcon />
                     </IconButton>
@@ -887,7 +899,7 @@ const Teachers = () => {
           <Box sx={styledelete}>
             <Typography sx={{ textAlign: "center" }}>
               Are you sure you want to delete the "
-              {selectedTeacher.split(" ")[0]}" teacher?
+              {selectedStudent.split(" ")[0]}" student?
             </Typography>
             <Box
               sx={{ display: "flex", mt: 2, justifyContent: "space-around" }}
@@ -1028,4 +1040,4 @@ const Teachers = () => {
   );
 };
 
-export default Teachers;
+export default Students;
