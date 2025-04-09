@@ -1,6 +1,5 @@
 @use "../../styles/variables.scss" as *;
-
-.students-container {
+.salary-container {
   width: 100%;
   display: flex;
   align-items: center;
@@ -13,7 +12,7 @@
     .outlined-basic {
       width: 100%;
     }
-    .add-button {
+    .apply-button {
       background-color: $primary500;
       color: #fff;
       border: none;
@@ -27,6 +26,24 @@
       font-weight: 700;
       &:hover {
         background-color: $primary700;
+      }
+      &:active {
+        background-color: $primary900;
+      }
+    }
+    .clear-button {
+      background-color: transparent;
+      color: #8c8c8c;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      height: 100%;
+      transition: all 0.3s;
+      font-weight: 700;
+      &:hover {
+        background-color: rgb(208, 205, 205);
       }
       &:active {
         background-color: $primary900;
@@ -52,31 +69,26 @@
       padding: 5px;
       font-size: 16px;
     }
-    .left-container {
-      display: flex;
-      gap: 7px;
-      .select-container {
-        display: flex;
-        align-items: center;
-        background-color: white;
-        border-radius: 5px;
-        padding: 5px 10px;
-        width: 280px;
-        .select-input {
-          border: none;
-          outline: none;
-          flex: 1;
-          padding: 5px;
-          font-size: 16px;
-          color: #8c8c8c;
-        }
-      }
-    }
   }
-
-  .teachers-section {
+  .class-section {
     width: 100%;
     height: 100%;
     background-color: white;
+  }
+  .filter-container {
+    display: flex;
+    gap: 10px;
+  }
+  .date-picker {
+    margin: 0;
+    background-color: white;
+  }
+  .salary-section {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+  .plus-icon {
+    color: #1bc392;
   }
 }

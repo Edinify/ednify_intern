@@ -23,6 +23,7 @@
       cursor: pointer;
       height: 100%;
       transition: all 0.3s;
+      font-weight: 700;
       &:hover {
         background-color: $primary700;
       }

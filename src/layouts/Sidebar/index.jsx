@@ -9,19 +9,27 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import SchoolIcon from "@mui/icons-material/School";
+import PeopleIcon from "@mui/icons-material/People";
+import PersonIcon from "@mui/icons-material/Person";
+import TableChartIcon from "@mui/icons-material/TableChart";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
+import FeedbackIcon from "@mui/icons-material/Feedback";
 import "./sidebar.scss";
 
 const menuItems = [
-  { text: "Dashboard", path: "/" },
-  { text: "Main Panel", path: "/mainpanel" },
-  { text: "Classes", path: "/classes" },
-  { text: "Teachers", path: "/teachers" },
-  { text: "Students", path: "/students" },
-  { text: "Table", path: "/table" },
-  { text: "Salary", path: "/salary" },
-  { text: "Finance", path: "/finance" },
-  { text: "Stimulation", path: "/stimulation" },
-  { text: "Feedbacks", path: "/feedbacks" },
+  { text: "Dashboard", path: "/", icon: <DashboardIcon /> },
+  { text: "Main Panel", path: "/mainpanel", icon: <LibraryBooksIcon /> },
+  { text: "Classes", path: "/classes", icon: <SchoolIcon /> },
+  { text: "Teachers", path: "/teachers", icon: <PeopleIcon /> },
+  { text: "Students", path: "/students", icon: <PersonIcon /> },
+  { text: "Table", path: "/table", icon: <TableChartIcon /> },
+  { text: "Salary", path: "/salary", icon: <MonetizationOnIcon /> },
+  { text: "Finance", path: "/finance", icon: <AccountBalanceIcon /> },
+  { text: "Stimulation", path: "/stimulation", icon: <EmojiObjectsIcon /> },
+  { text: "Feedbacks", path: "/feedbacks", icon: <FeedbackIcon /> },
 ];
 
 export default function Sidebar() {
@@ -37,9 +45,14 @@ export default function Sidebar() {
               className={location.pathname === item.path ? "active" : ""}
             >
               <ListItemIcon>
-                <DashboardIcon className="custom-icon" />
+                {React.cloneElement(item.icon, { className: "custom-icon" })}
               </ListItemIcon>
-              <ListItemText primary={item.text} />
+              <ListItemText
+                primary={item.text}
+                primaryTypographyProps={{
+                  fontWeight: 700,
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
@@ -53,12 +66,13 @@ export default function Sidebar() {
         <div className="logo">LOGO</div>
         <div className="personal-info">
           <img
-            src="https://st3.depositphotos.com/12243166/15921/v/450/depositphotos_159213824-stock-illustration-mountain-icon-vector.jpg"
+            src="https://i.pinimg.com/736x/f3/51/c7/f351c7d0a2e54acf12eba031d49bf783.jpg"
             alt=""
-            width={"70px"}
+            height={"70px"}
+            style={{ borderRadius: "8px" }}
           />
-          <p>Lorem, ipsum.</p>
-          <p>Lorem@gmail.com</p>
+          <p className="profile-name">Nargiz Aliyeva</p>
+          <p className="profile-email">nargiz@gmail.com</p>
         </div>
         {DrawerList}
       </Drawer>

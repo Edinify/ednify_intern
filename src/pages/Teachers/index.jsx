@@ -400,26 +400,6 @@ const Teachers = () => {
                     </li>
                   ))}
                 </ol>
-
-                {/* <ol style={{ listStylePosition: "inside" }}>
-                  {items.map((item, index) => (
-                    <li
-                      key={index}
-                      style={{
-                        display: "list-item",
-                        width: "80%",
-                        // justifyContent: "space-between",
-                        // alignItems: "center",
-                      }}
-                    >
-                      {item}
-                      <RemoveIcon
-                        className="del-button"
-                        onClick={() => handleDelete(item)}
-                      />
-                    </li>
-                  ))}
-                </ol> */}
               </div>
 
               <div className="salary row ">
