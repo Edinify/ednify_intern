@@ -50,7 +50,7 @@ const Header = () => {
   const pageTitle = routeNames[location.pathname];
   return (
     <div className="header-container">
-      <p>{pageTitle}</p>
+      <p className="page-title">{pageTitle}</p>
       <div className="header-icons">
         <Select
           value={language}

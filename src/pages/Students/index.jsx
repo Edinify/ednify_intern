@@ -17,11 +17,8 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import FormGroup from "@mui/material/FormGroup";
 import Checkbox from "@mui/material/Checkbox";
 import InputLabel from "@mui/material/InputLabel";
@@ -238,27 +235,14 @@ const Students = () => {
                 <CloseIcon />
               </IconButton>
               <Typography variant="h6" sx={{ textAlign: "center" }}>
-                Add teacher
+                Add student
               </Typography>
-              <div className="input-rows row row-input">
-                <div className="col-6 outlined-basic">
-                  <TextField
-                    id="outlined-basic"
-                    label="Full name"
-                    variant="outlined"
-                    fullWidth
-                  />
-                </div>
-                <div className="col-6 outlined-basic">
-                  <TextField
-                    id="outlined-basic"
-                    label="Birthday"
-                    variant="outlined"
-                    fullWidth
-                  />
-                </div>
-              </div>
-
+              <TextField
+                id="outlined-basic"
+                label="Full name"
+                variant="outlined"
+                fullWidth
+              />
               <div className="input-rows row row-input">
                 <div className="col-6 outlined-basic">
                   <TextField
@@ -279,12 +263,30 @@ const Students = () => {
                   />
                 </div>
               </div>
+              <div className="input-rows row row-input">
+                <div className="col-6 outlined-basic">
+                  <TextField
+                    id="outlined-basic"
+                    label="Birthday"
+                    variant="outlined"
+                    fullWidth
+                  />
+                </div>
+                <div className="col-6 outlined-basic">
+                  <TextField
+                    id="outlined-basic"
+                    label="Health status"
+                    variant="outlined"
+                    fullWidth
+                  />
+                </div>
+              </div>
 
               <div className="input-rows row row-input">
                 <div className="col-6 outlined-basic">
                   <TextField
                     id="outlined-basic"
-                    label="Mobile number"
+                    label="Educational institution"
                     variant="outlined"
                     className="outlined-basic"
                     fullWidth
@@ -293,7 +295,47 @@ const Students = () => {
                 <div className="col-6 outlined-basic">
                   <TextField
                     id="outlined-basic"
-                    label="Work experience"
+                    label="Educational degree"
+                    variant="outlined"
+                    className="outlined-basic"
+                    fullWidth
+                  />
+                </div>
+              </div>
+              <div className="input-rows row row-input">
+                <div className="col-6 outlined-basic">
+                  <TextField
+                    id="outlined-basic"
+                    label="Mother name"
+                    variant="outlined"
+                    className="outlined-basic"
+                    fullWidth
+                  />
+                </div>
+                <div className="col-6 outlined-basic">
+                  <TextField
+                    id="outlined-basic"
+                    label="Father name"
+                    variant="outlined"
+                    className="outlined-basic"
+                    fullWidth
+                  />
+                </div>
+              </div>
+              <div className="input-rows row row-input">
+                <div className="col-6 outlined-basic">
+                  <TextField
+                    id="outlined-basic"
+                    label="Mother mobile number"
+                    variant="outlined"
+                    className="outlined-basic"
+                    fullWidth
+                  />
+                </div>
+                <div className="col-6 outlined-basic">
+                  <TextField
+                    id="outlined-basic"
+                    label="Father mobile number"
                     variant="outlined"
                     className="outlined-basic"
                     fullWidth
@@ -302,40 +344,23 @@ const Students = () => {
               </div>
               <TextField
                 id="outlined-basic"
-                label="Health status"
+                label="Mobile number / Emergency"
                 variant="outlined"
                 className="outlined-basic"
               />
-              <FormControl>
-                <p>Marital status</p>
-                <RadioGroup
-                  aria-labelledby="demo-controlled-radio-buttons-group"
-                  name="controlled-radio-buttons-group"
-                  value={value}
-                  onChange={handleChange}
-                  className="row row-input"
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                  }}
-                >
-                  <FormControlLabel
-                    value="married"
-                    control={<Radio />}
-                    label="Married"
-                    className="radio-input col-6"
-                    sx={{ margin: 0 }}
-                  />
+              <TextField
+                id="outlined-basic"
+                label="Residental adress"
+                variant="outlined"
+                className="outlined-basic"
+              />
+              <TextField
+                id="outlined-basic"
+                label="Where did you hear us?"
+                variant="outlined"
+                className="outlined-basic"
+              />
 
-                  <FormControlLabel
-                    value="single"
-                    control={<Radio />}
-                    label="Single"
-                    className="radio-input col-6"
-                    sx={{ margin: 0 }}
-                  />
-                </RadioGroup>
-              </FormControl>
               <FormGroup>
                 <p>Department</p>
                 <div className="checkbox">
@@ -421,50 +446,12 @@ const Students = () => {
                 </ol>
               </div>
 
-              <div className="salary row ">
-                <TextField
-                  id="outlined-suffix-shrink"
-                  className="salary-input col-9"
-                  label="Salary"
-                  variant="outlined"
-                  slotProps={{
-                    input: {
-                      endAdornment: (
-                        <InputAdornment position="end">m</InputAdornment>
-                      ),
-                    },
-                  }}
-                />
-                <TextField
-                  select
-                  className="select-time col-3"
-                  defaultValue="Monthly"
-                  variant="standard"
-                  InputProps={{ disableUnderline: true }}
-                  sx={{
-                    minWidth: 80,
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                    height: "56px",
-                    display: "flex",
-                    alignItems: "center",
-                    "& .MuiInputBase-root": {
-                      display: "flex",
-                      alignItems: "center",
-                      height: "100%",
-                    },
-                    "& .MuiSelect-select": {
-                      display: "flex",
-                      alignItems: "center",
-                      padding: "10px 14px",
-                    },
-                    "& .MuiInputBase-input": { padding: "1" },
-                  }}
-                >
-                  <MenuItem value="Monthly">Monthly</MenuItem>
-                  <MenuItem value="Yearly">Hourly</MenuItem>
-                </TextField>
-              </div>
+              <TextField
+                id="outlined-basic"
+                label="Class amount"
+                variant="outlined"
+                className="outlined-basic"
+              />
 
               <div style={{ display: "flex", gap: "8px" }}>
                 <TextField label="Email" variant="outlined" fullWidth />
@@ -640,27 +627,15 @@ const Students = () => {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" sx={{ textAlign: "center" }}>
-              Edit teacher
+              Edit student
             </Typography>
-            <div className="input-rows row row-input">
-              <div className="col-6 outlined-basic">
-                <TextField
-                  id="outlined-basic"
-                  label="Full name"
-                  variant="outlined"
-                  fullWidth
-                />
-              </div>
-              <div className="col-6 outlined-basic">
-                <TextField
-                  id="outlined-basic"
-                  label="Birthday"
-                  variant="outlined"
-                  fullWidth
-                />
-              </div>
-            </div>
 
+            <TextField
+              id="outlined-basic"
+              label="Full name"
+              variant="outlined"
+              fullWidth
+            />
             <div className="input-rows row row-input">
               <div className="col-6 outlined-basic">
                 <TextField
@@ -681,12 +656,30 @@ const Students = () => {
                 />
               </div>
             </div>
+            <div className="input-rows row row-input">
+              <div className="col-6 outlined-basic">
+                <TextField
+                  id="outlined-basic"
+                  label="Birthday"
+                  variant="outlined"
+                  fullWidth
+                />
+              </div>
+              <div className="col-6 outlined-basic">
+                <TextField
+                  id="outlined-basic"
+                  label="Health status"
+                  variant="outlined"
+                  fullWidth
+                />
+              </div>
+            </div>
 
             <div className="input-rows row row-input">
               <div className="col-6 outlined-basic">
                 <TextField
                   id="outlined-basic"
-                  label="Mobile number"
+                  label="Educational institution"
                   variant="outlined"
                   className="outlined-basic"
                   fullWidth
@@ -695,7 +688,47 @@ const Students = () => {
               <div className="col-6 outlined-basic">
                 <TextField
                   id="outlined-basic"
-                  label="Work experience"
+                  label="Educational degree"
+                  variant="outlined"
+                  className="outlined-basic"
+                  fullWidth
+                />
+              </div>
+            </div>
+            <div className="input-rows row row-input">
+              <div className="col-6 outlined-basic">
+                <TextField
+                  id="outlined-basic"
+                  label="Mother name"
+                  variant="outlined"
+                  className="outlined-basic"
+                  fullWidth
+                />
+              </div>
+              <div className="col-6 outlined-basic">
+                <TextField
+                  id="outlined-basic"
+                  label="Father name"
+                  variant="outlined"
+                  className="outlined-basic"
+                  fullWidth
+                />
+              </div>
+            </div>
+            <div className="input-rows row row-input">
+              <div className="col-6 outlined-basic">
+                <TextField
+                  id="outlined-basic"
+                  label="Mother mobile number"
+                  variant="outlined"
+                  className="outlined-basic"
+                  fullWidth
+                />
+              </div>
+              <div className="col-6 outlined-basic">
+                <TextField
+                  id="outlined-basic"
+                  label="Father mobile number"
                   variant="outlined"
                   className="outlined-basic"
                   fullWidth
@@ -704,40 +737,22 @@ const Students = () => {
             </div>
             <TextField
               id="outlined-basic"
-              label="Health status"
+              label="Mobile number / Emergency"
               variant="outlined"
               className="outlined-basic"
             />
-            <FormControl>
-              <p>Marital status</p>
-              <RadioGroup
-                aria-labelledby="demo-controlled-radio-buttons-group"
-                name="controlled-radio-buttons-group"
-                value={value}
-                onChange={handleChange}
-                className="row row-input"
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                }}
-              >
-                <FormControlLabel
-                  value="married"
-                  control={<Radio />}
-                  label="Married"
-                  className="radio-input col-6"
-                  sx={{ margin: 0 }}
-                />
-
-                <FormControlLabel
-                  value="single"
-                  control={<Radio />}
-                  label="Single"
-                  className="radio-input col-6"
-                  sx={{ margin: 0 }}
-                />
-              </RadioGroup>
-            </FormControl>
+            <TextField
+              id="outlined-basic"
+              label="Residental adress"
+              variant="outlined"
+              className="outlined-basic"
+            />
+            <TextField
+              id="outlined-basic"
+              label="Where did you hear us?"
+              variant="outlined"
+              className="outlined-basic"
+            />
             <FormGroup>
               <p>Department</p>
               <div className="checkbox">
@@ -823,50 +838,12 @@ const Students = () => {
               </ol>
             </div>
 
-            <div className="salary row ">
-              <TextField
-                id="outlined-suffix-shrink"
-                className="salary-input col-9"
-                label="Salary"
-                variant="outlined"
-                slotProps={{
-                  input: {
-                    endAdornment: (
-                      <InputAdornment position="end">m</InputAdornment>
-                    ),
-                  },
-                }}
-              />
-              <TextField
-                select
-                className="select-time col-3"
-                defaultValue="Monthly"
-                variant="standard"
-                InputProps={{ disableUnderline: true }}
-                sx={{
-                  minWidth: 80,
-                  border: "1px solid #ccc",
-                  borderRadius: "4px",
-                  height: "56px",
-                  display: "flex",
-                  alignItems: "center",
-                  "& .MuiInputBase-root": {
-                    display: "flex",
-                    alignItems: "center",
-                    height: "100%",
-                  },
-                  "& .MuiSelect-select": {
-                    display: "flex",
-                    alignItems: "center",
-                    padding: "10px 14px",
-                  },
-                  "& .MuiInputBase-input": { padding: "1" },
-                }}
-              >
-                <MenuItem value="Monthly">Monthly</MenuItem>
-                <MenuItem value="Yearly">Hourly</MenuItem>
-              </TextField>
-            </div>
+            <TextField
+              id="outlined-basic"
+              label="Class amount"
+              variant="outlined"
+              className="outlined-basic"
+            />
 
             <div style={{ display: "flex", gap: "8px" }}>
               <TextField label="Email" variant="outlined" fullWidth />
