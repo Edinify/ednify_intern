@@ -1,7 +1,12 @@
 import "./mainPanelTable.scss";
 import PersonIcon from "@mui/icons-material/Person";
+import React, { useState } from "react";
+import MainTeacherModal from "../MainTeacherModal";
 
 const MainPanelTable = () => {
+  const [open, setOpen] = useState(false);
+  const [selectedCell, setSelectedCell] = useState(null);
+
   const days = ["Mon.", "Tue.", "Wed.", "Thu", "Fri.", "Sat.", "Sun."];
   const dates = [
     "14 Mar.",
@@ -41,6 +46,16 @@ const MainPanelTable = () => {
         return "";
     }
   };
+  const handleCellClick = (key) => {
+    if (selectedCell === key) {
+      // İkinci dəfə klik – modalı aç
+      setOpen(true);
+    } else {
+      // İlk klik – hüceyrəni seç
+      setSelectedCell(key);
+    }
+  };
+
 
   return (
     <div className="schedule-container">
@@ -73,6 +88,7 @@ const MainPanelTable = () => {
                     <td
                       key={colIndex}
                       className={`${cell ? getStatusClass(cell.status) : ""} day-off`}
+                      onClick={() => handleCellClick(`${rowIndex}-${colIndex}`)}
                     >
                       {cell && (
                         <div className="class-info">
@@ -99,7 +115,10 @@ const MainPanelTable = () => {
           </tbody>
         </table>
       </div>
+ <MainTeacherModal open={open} setOpen={setOpen}/>
+         
     </div>
+ 
   );
 };
 
