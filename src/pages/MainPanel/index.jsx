@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import "./mainPanel.scss";
 import "../../styles/grid.scss";
 import MainPanelTable from "../../components/MainPanelTable";
+import MainPanelControls from "../../components/MainPanelControls";
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -46,10 +47,10 @@ const MainPanel = () => {
   console.log(value);
   return (
     <>
-      <Box sx={{ width: "100%", height: "100%"}} className="main-panel" >
+      <div className="main-panel" >
 
      
-       <Box sx={{ borderBottom: 1, border: "none" }} className="tab-header">
+       <div className="tab-header">
         <div className="tab-container">
         <Tabs
             value={value}
@@ -60,19 +61,27 @@ const MainPanel = () => {
             <Tab label="Student" {...a11yProps(1)} className={`${value==1?"active-tab":"inactive-tab"} tab-element col-1`}/>
           </Tabs>
         </div>
-        </Box>
-        <Box className="tab-wrapper">
+        </div>
+        <div className="tab-wrapper">
         <div className="tab-container">
           <CustomTabPanel value={value} index={0} className="tab-panel">
-
+          <MainPanelControls
+  onApply={(filters) => {
+    console.log("Apply filters:", filters);
+  }}
+  onClear={() => {
+    console.log("Clear filters");
+    
+  }}
+/>
         <MainPanelTable/>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1} className="tab-panel">
             Student
           </CustomTabPanel>
           </div>
-        </Box>
-      </Box>
+        </div>
+      </div>
     </>
   );
 };

@@ -59,8 +59,13 @@ const MainPanelTable = () => {
           </thead>
           <tbody>
             {timeSlots.map((slot, rowIndex) => (
+             
               <tr key={rowIndex}>
-                <td className="time-slot">{slot}</td>
+                <td className="time-slot" onClick={()=>{console.log(slot.split("-")[0]);}}> 
+                  <span>{slot.split("-")[0]}</span>
+                  <span>-</span>
+                  <span>{slot.split("-")[1]}</span>
+                </td>
                 {days.map((_, colIndex) => {
                   const key = `${rowIndex}-${colIndex}`;
                   const cell = schedule[key];
