@@ -71,15 +71,19 @@ const teachers = [
 
 function Stimulation() {
   const [openMenu, setOpenMenu] = useState(null);
-
-  const toggleMenu = (index) => {
-    setOpenMenu(openMenu === index ? null : index);
-  };
-
   const [activeTab, setActiveTab] = useState("Fine");
   const [search, setSearch] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
+  const [modalData, setModalData] = useState({
+    name: "",
+    comment: "",
+    bonus: "",
+    type: "",
+    commitment: "",
+  });
 
   const clearAll = () => {
     setSearch("");
@@ -87,10 +91,111 @@ function Stimulation() {
     setToDate("");
   };
 
-  return (
-    <div class="part">
-      <div class="dashboard"></div>
+  const handleEdit = (index) => {
+    setEditIndex(index);
+    const entry = activeTab === "Bonus" ? teachers[index] : data[index];
+    setModalData({
+      name: entry.name,
+      comment: entry.comment,
+      bonus: entry.bonus || "",
+      type: entry.type || "",
+      commitment: entry.commitment || "",
+    });
+    setShowModal(true);
+  };
 
+  const handleDelete = () => {
+    if (activeTab === "Bonus") {
+      teachers.splice(editIndex, 1);
+    } else {
+      data.splice(editIndex, 1);
+    }
+    setShowModal(false);
+    setEditIndex(null);
+  };
+
+  const Modal = ({ onClose }) => {
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      setShowModal(false);
+      setEditIndex(null);
+    };
+
+    return (
+      <div className="modal-overlay" onClick={onClose}>
+        <div className="modal" onClick={(e) => e.stopPropagation()}>
+          <button className="close-btn" onClick={onClose}>
+            ×
+          </button>
+          <h2>
+            {editIndex === null ? `Add ${activeTab}` : `Edit ${activeTab}`}
+          </h2>
+          <form className="modal-form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Teacher name"
+              value={modalData.name}
+              onChange={(e) =>
+                setModalData({ ...modalData, name: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              placeholder="Comment"
+              value={modalData.comment}
+              onChange={(e) =>
+                setModalData({ ...modalData, comment: e.target.value })
+              }
+            />
+            {activeTab === "Bonus" ? (
+              <input
+                type="text"
+                placeholder="Bonus (e.g. 100 AZN)"
+                value={modalData.bonus}
+                onChange={(e) =>
+                  setModalData({ ...modalData, bonus: e.target.value })
+                }
+              />
+            ) : (
+              <>
+                <input
+                  type="text"
+                  placeholder="Fine type (e.g. Reproach)"
+                  value={modalData.type}
+                  onChange={(e) =>
+                    setModalData({ ...modalData, type: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="Commitment"
+                  value={modalData.commitment}
+                  onChange={(e) =>
+                    setModalData({ ...modalData, commitment: e.target.value })
+                  }
+                />
+              </>
+            )}
+          </form>
+          <div>
+            <div className="savedelete">
+              <div className="save">
+                <button type="submit">Save</button>
+              </div>
+              <div>
+                <button className="delete-btn" onClick={handleDelete}>
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="part">
       <div className="tabs-wrapper">
         <div className="tabs">
           <div
@@ -106,46 +211,32 @@ function Stimulation() {
             Fine
           </div>
         </div>
-        <button className="add-btn">+ Add</button>
+        <button className="add-btn" onClick={() => setShowModal(true)}>
+          + Add
+        </button>
       </div>
-      <div className="tab-contentt">
+
+      <div className="tab-content">
         {activeTab === "Bonus" && (
           <div>
             <div className="filter-bar">
-              <div class="searchpart">
-                <div className="search-box">
-                  <span className="icon">🔍</span>
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                  />
-                </div>
+              <div className="search-box">
+                <span className="icon">🔍</span>
+                <input type="text" placeholder="Search" />
               </div>
+              <div></div>
 
               <div className="date-picker">
                 <label>From</label>
-                <input
-                  type="date"
-                  value={fromDate}
-                  onChange={(e) => setFromDate(e.target.value)}
-                />
+                <input type="date" />
               </div>
 
               <div className="date-picker">
                 <label>To</label>
-                <input
-                  type="date"
-                  value={toDate}
-                  onChange={(e) => setToDate(e.target.value)}
-                />
+                <input type="date" />
               </div>
 
-              <button className="clear-btn" onClick={clearAll}>
-                Clear all
-              </button>
-
+              <button className="clear-btn">Clear all</button>
               <button className="apply-btn">Apply</button>
             </div>
 
@@ -171,16 +262,10 @@ function Stimulation() {
                         <div className="menu-wrapper">
                           <span
                             className="dots"
-                            onClick={() => toggleMenu(index)}
+                            onClick={() => handleEdit(index)}
                           >
                             ⋮
                           </span>
-                          {openMenu === index && (
-                            <div className="menu">
-                              <div>Edit</div>
-                              <div>Delete</div>
-                            </div>
-                          )}
                         </div>
                       </td>
                     </tr>
@@ -193,8 +278,28 @@ function Stimulation() {
 
         {activeTab === "Fine" && (
           <div>
-            <div className="table-container">
-              <table className="warnings-table">
+            <div className="filter-bar">
+              <div className="search-box">
+                <span className="icon">🔍</span>
+                <input type="text" placeholder="Search" />
+              </div>
+              <div></div>
+
+              <div className="date-picker">
+                <label>From</label>
+                <input type="date" />
+              </div>
+
+              <div className="date-picker">
+                <label>To</label>
+                <input type="date" />
+              </div>
+
+              <button className="clear-btn">Clear all</button>
+              <button className="apply-btn">Apply</button>
+            </div>
+            <div className="warnings-table">
+              <table>
                 <thead>
                   <tr>
                     <th>Teacher name</th>
@@ -211,7 +316,14 @@ function Stimulation() {
                       <td>{entry.type}</td>
                       <td>{entry.comment}</td>
                       <td>{entry.date}</td>
-                      <td className="actions">⋮</td>
+                      <td className="actions">
+                        <span
+                          className="dots"
+                          onClick={() => handleEdit(index)}
+                        >
+                          ⋮
+                        </span>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -220,6 +332,8 @@ function Stimulation() {
           </div>
         )}
       </div>
+
+      {showModal && <Modal onClose={() => setShowModal(false)} />}
     </div>
   );
 }
