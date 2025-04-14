@@ -23,6 +23,7 @@
       cursor: pointer;
       height: 100%;
       transition: all 0.3s;
+      font-weight: 700;
       &:hover {
         background-color: $primary700;
       }
@@ -105,6 +106,7 @@
     border-radius: 4px;
     padding: 8px 20px;
     cursor: pointer;
+    font-weight: 700;
   }
   .del-button {
     border-radius: 50%;
@@ -124,23 +126,6 @@
 strong {
   color: grey;
 }
-// .personal-info {
-//   display: flex;
-// }
-// .outlined-basic .MuiOutlinedInput-root {
-//   height: 40px !important;
-//   display: flex !important;
-//   justify-content: center;
-//   align-items: center !important;
-// }
-// .outlined-basic .MuiInputLabel-root {
-//   font-size: 14px !important;
-//   align-items: center !important;
-//   top: -5px !important;
-// }
-// .outlined-basic .MuiInputLabel-shrink {
-//   top: -7px;
-// }
 .row-input {
   gap: 9px;
 }
