@@ -55,10 +55,6 @@ const Classes = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const openOption = Boolean(anchorEl);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const [selectedClass, setSelectedClass] = useState("");

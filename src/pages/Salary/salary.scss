@@ -92,3 +92,38 @@
     color: #1bc392;
   }
 }
+
+.save-button {
+  background-color: $primary500;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  width: 80px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  height: 100%;
+  transition: all 0.3s;
+  font-weight: 700;
+  &:hover {
+    background-color: $primary700;
+  }
+  &:active {
+    background-color: $primary900;
+  }
+}
+.popover-footer {
+  display: flex;
+  justify-content: space-between;
+  .delete-btn {
+    color: red;
+    background-color: #ffebee;
+    border-radius: 3px;
+  }
+}
+.cancel-button {
+  font-weight: 700;
+}
+.delete-button {
+  font-weight: 700;
+}
