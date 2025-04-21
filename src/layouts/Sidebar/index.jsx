@@ -18,7 +18,8 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import "./sidebar.scss";
-
+import { useTranslation } from "react-i18next";
+import "./../../i18n.js";
 const menuItems = [
   { text: "Dashboard", path: "/", icon: <DashboardIcon /> },
   { text: "Main Panel", path: "/mainpanel", icon: <LibraryBooksIcon /> },
@@ -33,12 +34,13 @@ const menuItems = [
 ];
 
 export default function Sidebar() {
+  const { t } = useTranslation();
   const location = useLocation();
   const DrawerList = (
-    <Box sx={{ width: 200 }} role="presentation">
+    <Box sx={{ width: 210 }} role="presentation">
       <List>
         {menuItems.map((item, index) => (
-          <ListItem key={item.text} disablePadding>
+          <ListItem key={item.text} disablePadding className="list-item">
             <ListItemButton
               component={Link}
               to={item.path}
@@ -48,7 +50,7 @@ export default function Sidebar() {
                 {React.cloneElement(item.icon, { className: "custom-icon" })}
               </ListItemIcon>
               <ListItemText
-                primary={item.text}
+                primary={t(item.text)}
                 primaryTypographyProps={{
                   fontWeight: 700,
                 }}

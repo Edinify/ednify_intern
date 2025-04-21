@@ -8,6 +8,8 @@ useLocation;
 import { useState } from "react";
 import { Select, MenuItem, Box, Typography } from "@mui/material";
 import Flag from "react-world-flags";
+import { useTranslation } from "react-i18next";
+import "./../../i18n.js";
 const routeNames = {
   "/": "Dashboard",
   "/mainpanel": "Main Panel",
@@ -27,10 +29,13 @@ const languages = [
 ];
 
 const Header = () => {
+  const { t, i18n } = useTranslation();
   const [language, setLanguage] = useState("en");
 
   const handleChange = (event) => {
-    setLanguage(event.target.value);
+    const selectedLang = event.target.value;
+    setLanguage(selectedLang);
+    i18n.changeLanguage(selectedLang);
   };
 
   const renderValue = (selected) => {
@@ -47,7 +52,8 @@ const Header = () => {
   };
 
   const location = useLocation();
-  const pageTitle = routeNames[location.pathname];
+  const pageTitle = t(routeNames[location.pathname]);
+
   return (
     <div className="header-container">
       <p className="page-title">{pageTitle}</p>

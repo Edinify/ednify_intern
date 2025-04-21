@@ -30,6 +30,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import EditIcon from "@mui/icons-material/Edit";
+import { useTranslation } from "react-i18next";
+import "./../../i18n.js";
 import "./teachers.scss";
 const styleadd = {
   position: "absolute",
@@ -104,6 +106,8 @@ const rows = [
   ),
 ];
 const Teachers = () => {
+  const { t } = useTranslation();
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -173,18 +177,22 @@ const Teachers = () => {
         <div className="left-container">
           <div className="search-container">
             <SearchIcon className="search-icon" />
-            <input type="text" placeholder="Search" className="search-input" />
+            <input
+              type="text"
+              placeholder={t("Search")}
+              className="search-input"
+            />
           </div>
           <div className="select-container">
             <select className="select-input">
-              <option value="someOption">Active</option>
-              <option value="otherOption">Other option</option>
+              <option value="someOption">{t("Active")}</option>
+              <option value="otherOption">{t("Inactive")}</option>
             </select>
           </div>
         </div>
         <div>
           <button className="add-button" onClick={handleOpen}>
-            + Add
+            + {t("Add")}
           </button>
           <Modal
             open={open}
@@ -204,13 +212,13 @@ const Teachers = () => {
                 <CloseIcon />
               </IconButton>
               <Typography variant="h6" sx={{ textAlign: "center" }}>
-                Add teacher
+                {t("Add teacher")}
               </Typography>
               <div className="input-rows row row-input">
                 <div className="col-6 outlined-basic">
                   <TextField
                     id="outlined-basic"
-                    label="Full name"
+                    label={t("Full name")}
                     variant="outlined"
                     fullWidth
                   />
@@ -218,7 +226,7 @@ const Teachers = () => {
                 <div className="col-6 outlined-basic">
                   <TextField
                     id="outlined-basic"
-                    label="Birthday"
+                    label={t("Birthday")}
                     variant="outlined"
                     fullWidth
                   />
@@ -454,7 +462,7 @@ const Teachers = () => {
                 />
               </div>
               <div className="button-container">
-                <button className="create-button">Create</button>
+                <button className="create-button">{t("Create")}</button>
               </div>
             </Box>
           </Modal>
@@ -465,14 +473,8 @@ const Teachers = () => {
           <Table sx={{ "& td, & th": { padding: "10px 20px" } }}>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ color: "grey" }}>Teacher name</TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  Class
+                <TableCell sx={{ color: "grey" }}>
+                  {t("Teacher name")}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -480,7 +482,7 @@ const Teachers = () => {
                     borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                  Email
+                  {t("Class")}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -488,7 +490,7 @@ const Teachers = () => {
                     borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                  Mobile number
+                  {t("Email")}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -496,7 +498,15 @@ const Teachers = () => {
                     borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                  Salary
+                  {t("Mobile number")}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    color: "grey",
+                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  {t("Salary")}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -574,9 +584,9 @@ const Teachers = () => {
             "& .MuiPaper-root": { width: "150px" },
           }}
         >
-          <MenuItem onClick={handleOpenEdit}>Edit</MenuItem>
+          <MenuItem onClick={handleOpenEdit}>{t("Edit")}</MenuItem>
           <MenuItem onClick={handleOpenDelete} sx={{ color: "red" }}>
-            Delete
+            {t("Delete")}
           </MenuItem>
         </Menu>
 
@@ -593,7 +603,7 @@ const Teachers = () => {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" sx={{ textAlign: "center" }}>
-              Edit teacher
+              {t("Edit teacher")}
             </Typography>
             <div className="input-rows row row-input">
               <div className="col-6 outlined-basic">
@@ -843,7 +853,7 @@ const Teachers = () => {
               />
             </div>
             <div className="button-container">
-              <button className="create-button">Save</button>
+              <button className="create-button">{t("Save")}</button>
             </div>
           </Box>
         </Modal>
@@ -851,17 +861,23 @@ const Teachers = () => {
         <Modal open={openDelete} onClose={handleCloseDelete}>
           <Box sx={styledelete}>
             <Typography sx={{ textAlign: "center" }}>
-              Are you sure you want to delete the "
-              {selectedTeacher.split(" ")[0]}" teacher?
+              {t("ConfirmDeleteTeacher", {
+                name: selectedTeacher.split(" ")[0],
+              })}
             </Typography>
             <Box
-              sx={{ display: "flex", mt: 2, justifyContent: "space-around" }}
+              sx={{
+                display: "flex",
+                mt: 2,
+                justifyContent: "space-around",
+                gap: 1,
+              }}
             >
               <button className="cancel-button" onClick={handleCloseDelete}>
-                Cancel
+                {t("Cancel")}
               </button>
               <button className="delete-button" onClick={handleCloseDelete}>
-                Delete
+                {t("Delete")}
               </button>
             </Box>
           </Box>
@@ -888,7 +904,7 @@ const Teachers = () => {
           >
             <div>
               <Typography variant="h6" component="h2" sx={{ marginBottom: 1 }}>
-                Personal Information
+                {t("Personal Information")}
               </Typography>
               <div>
                 <IconButton
