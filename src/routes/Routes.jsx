@@ -10,6 +10,7 @@ import Students from "../pages/Students";
 import Finance from "../pages/Finance";
 import Stimulation from "../pages/Stimulation";
 import Salary from "../pages/Salary";
+import Table from "../pages/Table";
 export const routes = [
   {
     path: "/",
@@ -42,6 +43,10 @@ export const routes = [
       {
         path: "/stimulation",
         element: <Stimulation />,
+      },
+      {
+        path: "/table",
+        element: <Table />,
       },
       {
         path: "/salary",
