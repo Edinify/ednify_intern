@@ -125,14 +125,15 @@ const MainStudentModal = ({ open, setOpen,cellData  }) => {
             display="flex"
             justifyContent="space-end"
             alignItems="center"
+            width="100%"
           >
     
 
-            <Box display="flex" alignItems="center" gap={2}>
+           
               <button className="save-button">
                 Save
               </button>
-            </Box>
+           
           </Box>
         </Box>
       </Box>
