@@ -13,7 +13,6 @@ import {
   Box,
   Modal,
 } from "@mui/material";
-import "./mainTeacherModal.scss";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
@@ -26,7 +25,7 @@ const studentData = [
   { name: "Omar.B", color: "#F7C8C8" },
   { name: "Cahid.F", color: "#D9F4C7" },
 ];
-const MainTeacherModal = ({ open, setOpen,cellData  }) => {
+const MainStudentModal = ({ open, setOpen,cellData  }) => {
   const [note, setNote] = useState("Bu müəllimin qeydi olacaq");
   const [task, setTask] = useState("Bu isə tapşırıqdır");
   const [rating, setRating] = useState(0);
@@ -101,28 +100,7 @@ const MainTeacherModal = ({ open, setOpen,cellData  }) => {
             </Box>
           </Box>
 
-          <Box mb={2}>
-            <Typography className="text-filed-label">Teacher note</Typography>
-            <TextField
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-              fullWidth
-              multiline
-                         
-            />
-          </Box>
-
-          <Box mb={4}>
-            <Typography className="text-filed-label">Tasks</Typography>
-            <TextField
-              value={task}
-              onChange={(e) => setTask(e.target.value)}
-              fullWidth
-              multiline
-          
-            />
-          </Box>
-
+        
           <Box mb={4}>
             <Typography  className="text-filed-label">
               Student:
@@ -141,74 +119,14 @@ const MainTeacherModal = ({ open, setOpen,cellData  }) => {
             </Grid>
           </Box>
 
-          <Box
-            display="flex"
-            alignItems="center"
-            gap={1}
-            justifyContent="space-between"
-            mb={2}
-          >
-            <Rating
-              name="rating"
-              value={rating}
-              sx={{ color: "#FBC01C" }}
-              onChange={(e, newValue) => setRating(newValue)}
-              size="medium"
-            />
-            <Typography
-              fontSize={14}
-              color="primary"
-              sx={{ cursor: "pointer" }}
-            >
-              Access for edit
-            </Typography>
-          </Box>
 
           <Box
          
             display="flex"
-            justifyContent="space-between"
+            justifyContent="space-end"
             alignItems="center"
           >
-            <ToggleButtonGroup
-              value={status}
-              exclusive
-              onChange={(e, newStatus) => {
-                if (newStatus !== null) setStatus(newStatus);
-              }}
-              size="small"
-            >
-              <ToggleButton value="unviewed"  sx={{backgroundColor:"#f4f4f4",borderColor:"#DDDDDD",
-      '&.Mui-selected': {
-        backgroundColor: '#2A78FF', // MUI primary blue
-        color: '#fff',
-        border:"none",
-        '&:hover': {
-          backgroundColor: '#115293', // darker blue on hover
-        },
-      },
-    }}>Unviewed</ToggleButton>
-              <ToggleButton value="confirmed"  sx={{backgroundColor:"#f4f4f4",borderColor:"#DDDDDD",
-      '&.Mui-selected': {
-        backgroundColor: '#2A78FF', // MUI primary blue
-        color: '#fff',
-        border:"none",
-        '&:hover': {
-          backgroundColor: '#115293', // darker blue on hover
-        },
-      },
-    }}>Confirmed</ToggleButton>
-              <ToggleButton value="canceled"  sx={{backgroundColor:"#f4f4f4",borderColor:"#DDDDDD",
-      '&.Mui-selected': {
-        backgroundColor: '#2A78FF', // MUI primary blue
-        color: '#fff',
-        border:"none",
-        '&:hover': {
-          backgroundColor: '#115293', // darker blue on hover
-        },
-      },
-    }}>Canceled</ToggleButton>
-            </ToggleButtonGroup>
+    
 
             <Box display="flex" alignItems="center" gap={2}>
               <button className="save-button">
@@ -222,4 +140,4 @@ const MainTeacherModal = ({ open, setOpen,cellData  }) => {
   );
 };
 
-export default MainTeacherModal;
+export default MainStudentModal;

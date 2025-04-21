@@ -5,8 +5,9 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import "./mainPanel.scss";
 import "../../styles/grid.scss";
-import MainPanelTable from "../../components/MainPanelTable";
+import MainPanelTeacherTable from "../../components/MainPanelTeacherTable";
 import MainPanelControls from "../../components/MainPanelControls";
+import MainPanelStudentTable from "../../components/MainPanelStudentTable";
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -74,10 +75,19 @@ const MainPanel = () => {
     
   }}
 />
-        <MainPanelTable/>
+        <MainPanelTeacherTable/>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1} className="tab-panel">
-            Student
+          <MainPanelControls
+  onApply={(filters) => {
+    console.log("Apply filters:", filters);
+  }}
+  onClear={() => {
+    console.log("Clear filters");
+    
+  }}
+/>
+        <MainPanelStudentTable/>
           </CustomTabPanel>
           </div>
         </div>

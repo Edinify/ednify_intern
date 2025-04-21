@@ -1,0 +1,54 @@
+
+@use '../../styles/variables' as *;
+.teacher-info , .date-info{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.css-19midj6 {
+    padding: 0px;
+}
+.MuiBox-root.css-0{
+    width: 90%;
+}
+.typography-name, .typography-content{
+    font-weight: 600;
+    font-size: 16px;
+    color: $neutral900;
+}
+.typography-name{
+    color: #717171;
+    margin-right: 5px;
+}
+
+.text-filed-label{
+   font-weight: 600;
+   font-size: 16px;
+   margin-bottom: 15px; 
+   color: #717171;
+}
+
+.student-name{
+    font-weight: 600;
+    font-size: 14px;
+    padding: 2px 0px 0px 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+.MuiBox-root.css-1ffvkz3{
+    padding: 0px;
+}
+
+.save-button{
+    padding: 8px 24px;
+    border-radius:  8px;
+    background-color: $primary200;
+    color: $neutral100;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+
+}
