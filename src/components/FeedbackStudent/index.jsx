@@ -8,8 +8,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { Close as CloseIcon, Edit as EditIcon } from "@mui/icons-material";
+import {
+  Close as CloseIcon,
+  Edit as EditIcon,
+  Feedback,
+} from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -17,34 +23,47 @@ import Popover from "@mui/material/Popover";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import "./salary.scss";
-
-function createData(
-  teacherName,
-  confirmed,
-  canceled,
-  participantCount,
-  salary,
-  totalSalary,
-  bonus
-) {
+import "./feedbackStudent.scss";
+function createData(studentName, aboutWho, feedback, date) {
   return {
-    teacherName,
-    confirmed,
-    canceled,
-    participantCount,
-    salary,
-    totalSalary,
-    bonus,
+    studentName,
+    aboutWho,
+    feedback,
+    date,
   };
 }
 
 const rows = [
-  createData("Agababa Baghirov", 0, 0, 0, "15 (saatliq)", 0, 0),
-  createData("Shahin Mammadov", 0, 0, 0, "15 (saatliq)", 0, 0),
-  createData("Nargiz Aliyeva", 0, 0, 0, "15 (saatliq)", 0, 0),
-  createData("Lala Suleymanli", 0, 0, 0, "15 (saatliq)", 0, 0),
-  createData("Eyyub Agalarov", 0, 0, 0, "15 (saatliq)", 0, 0),
+  createData(
+    "Agababa Baghirov",
+    "Ceyhun Imanov",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit",
+    "23.08.2023"
+  ),
+  createData(
+    "Shahin Mammadov",
+    "Nihad Orucov",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit",
+    "21.08.2023"
+  ),
+  createData(
+    "Nargiz Aliyeva",
+    "Elgun Mammadaliyev",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit",
+    "12.07.2023"
+  ),
+  createData(
+    "Lala Suleymanli",
+    "Ramin Mammadov",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit",
+    "23.08.2023"
+  ),
+  createData(
+    "Eyyub Agalarov",
+    "Zeynab Kazimova",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit",
+    "23.08.2023"
+  ),
 ];
 const styledelete = {
   position: "absolute",
@@ -60,7 +79,7 @@ const styledelete = {
   flexDirection: "column",
   gap: 2,
 };
-const Salary = () => {
+const FeedbackStudent = () => {
   const [anchorElAdd, setAnchorElAdd] = useState(null);
   const [hoveredBonus, setHoveredBonus] = useState(null);
 
@@ -107,7 +126,7 @@ const Salary = () => {
   const [selectedTeacher, setSelectedTeacher] = useState("");
 
   return (
-    <div className="salary-container">
+    <div className="feedbackStudent-container">
       <div className="search-section">
         <div className="search-container">
           <SearchIcon className="search-icon" />
@@ -132,18 +151,22 @@ const Salary = () => {
         </div>
       </div>
       <div className="salary-section">
-        <TableContainer component={Paper} elevation={0}>
+        <TableContainer
+          component={Paper}
+          elevation={0}
+          sx={{ borderTop: "1px solid rgba(0, 0, 0, 0.1)" }}
+        >
           <Table sx={{ "& td, & th": { padding: "10px 20px" } }}>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ color: "grey" }}>Teacher name</TableCell>
+                <TableCell sx={{ color: "grey" }}>Student name</TableCell>
                 <TableCell
                   sx={{
                     color: "grey",
                     borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                  Confirmed
+                  About who (teacher)
                 </TableCell>
                 <TableCell
                   sx={{
@@ -151,7 +174,7 @@ const Salary = () => {
                     borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                  Canceled
+                  Feedback
                 </TableCell>
                 <TableCell
                   sx={{
@@ -159,31 +182,7 @@ const Salary = () => {
                     borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                  Participant Count
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  Salary
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  Total salary
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  Bonus
+                  Date
                 </TableCell>
                 <TableCell
                   sx={{
@@ -195,62 +194,22 @@ const Salary = () => {
             </TableHead>
             <TableBody>
               {rows.map((row, index) => (
-                <TableRow key={row.teacherName}>
-                  <TableCell>{row.teacherName}</TableCell>
+                <TableRow key={row.studentName}>
+                  <TableCell>{row.studentName}</TableCell>
                   <TableCell
                     sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
                   >
-                    {row.confirmed}
+                    {row.aboutWho}
                   </TableCell>
                   <TableCell
                     sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
                   >
-                    {row.canceled}
+                    {row.feedback}
                   </TableCell>
                   <TableCell
                     sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
                   >
-                    {row.participantCount}
-                  </TableCell>
-                  <TableCell
-                    sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
-                  >
-                    {row.salary}
-                  </TableCell>
-                  <TableCell
-                    sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
-                  >
-                    {row.totalSalary}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                      position: "relative",
-                      cursor: "pointer",
-                      backgroundColor:
-                        hoveredBonus === row.teacherName
-                          ? "rgba(0,0,0,0.04)"
-                          : "transparent",
-                      transition: "background-color 0.2s",
-                    }}
-                    onMouseEnter={() => setHoveredBonus(row.teacherName)}
-                    onMouseLeave={() => setHoveredBonus(null)}
-                  >
-                    {row.bonus}
-                    {hoveredBonus === row.teacherName && (
-                      <IconButton
-                        size="small"
-                        onClick={(e) => handleOpenEdit(e, index)}
-                        sx={{
-                          position: "absolute",
-                          top: "50%",
-                          right: 8,
-                          transform: "translateY(-50%)",
-                        }}
-                      >
-                        <EditIcon fontSize="small" />
-                      </IconButton>
-                    )}
+                    {row.date}
                   </TableCell>
 
                   <TableCell
@@ -260,8 +219,10 @@ const Salary = () => {
                     }}
                     align="center"
                   >
-                    <IconButton onClick={handleOpenAdd}>
-                      <AddCircleOutlineIcon className="plus-icon" />
+                    <IconButton
+                      onClick={(e) => handleMenuClick(e, row.teacherName)}
+                    >
+                      <MoreVertIcon />
                     </IconButton>
                   </TableCell>
                 </TableRow>
@@ -410,4 +371,4 @@ const Salary = () => {
   );
 };
 
-export default Salary;
+export default FeedbackStudent;

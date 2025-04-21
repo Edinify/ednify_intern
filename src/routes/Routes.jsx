@@ -11,6 +11,7 @@ import Finance from "../pages/Finance";
 import Stimulation from "../pages/Stimulation";
 import Salary from "../pages/Salary";
 import Table from "../pages/Table";
+import Feedbacks from "../pages/Feedbacks";
 export const routes = [
   {
     path: "/",
@@ -51,6 +52,10 @@ export const routes = [
       {
         path: "/salary",
         element: <Salary />,
+      },
+      {
+        path: "/feedbacks",
+        element: <Feedbacks />,
       },
     ],
   },
