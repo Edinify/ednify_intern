@@ -12,7 +12,10 @@ import Popover from "@mui/material/Popover";
 import { Box, Typography, Avatar } from "@mui/material";
 import SchoolIcon from "@mui/icons-material/School";
 import CakeIcon from "@mui/icons-material/Cake";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PasswordIcon from "@mui/icons-material/Password";
 import { useTranslation } from "react-i18next";
+import ChangePasswordModal from "../../components/ChangePasswordModal";
 import "./../../i18n.js";
 const routeNames = {
   "/": "Dashboard",
@@ -101,6 +104,18 @@ const Header = () => {
 
   const open = Boolean(anchorEl);
 
+  const [anchorElPerson, setAnchorElPerson] = useState(null);
+
+  const handlePersonClick = (event) => {
+    setAnchorElPerson(event.currentTarget);
+  };
+
+  const handleClosePerson = () => {
+    setAnchorElPerson(null);
+  };
+
+  const openPerson = Boolean(anchorElPerson);
+  const [openPassword, setOpenPassword] = useState(false);
   return (
     <div className="header-container">
       <p className="page-title">{pageTitle}</p>
@@ -138,7 +153,16 @@ const Header = () => {
             padding: "1px",
           }}
         />
-        <PersonOutlineIcon />
+        <PersonOutlineIcon
+          onClick={handlePersonClick}
+          style={{
+            cursor: "pointer",
+            color: openPerson ? "#6c63ff" : "inherit",
+            backgroundColor: openPerson ? "#eeeaff" : "inherit",
+            borderRadius: "50%",
+            padding: "1px",
+          }}
+        />
       </div>
 
       <Popover
@@ -234,6 +258,74 @@ const Header = () => {
             </Box>
           ))}
       </Popover>
+      <Popover
+        open={openPerson}
+        anchorEl={anchorElPerson}
+        onClose={handleClosePerson}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        PaperProps={{
+          sx: {
+            width: 200,
+            borderRadius: 2,
+            p: 1,
+          },
+        }}
+      >
+        <Box display="flex" flexDirection="column" gap={1}>
+          <Box
+            display="flex"
+            alignItems="center"
+            gap={1}
+            px={0.5}
+            py={0.5}
+            sx={{
+              cursor: "pointer",
+            }}
+          >
+            <PersonOutlineIcon fontSize="small" />
+            <Typography fontSize="14px">{t("Profile picture")}</Typography>
+          </Box>
+          <Box
+            display="flex"
+            alignItems="center"
+            gap={1}
+            px={0.5}
+            py={0.5}
+            sx={{
+              cursor: "pointer",
+            }}
+            onClick={() => setOpenPassword(true)}
+          >
+            <PasswordIcon fontSize="small" />
+            <Typography fontSize="14px">{t("Change password")}</Typography>
+          </Box>
+          <Box
+            display="flex"
+            alignItems="center"
+            gap={1}
+            px={0.5}
+            py={0.5}
+            sx={{
+              cursor: "pointer",
+              color: "#f44336",
+            }}
+          >
+            <LogoutIcon fontSize="small" />
+            <Typography fontSize="14px">{t("Logout")}</Typography>
+          </Box>
+        </Box>
+      </Popover>
+      <ChangePasswordModal
+        open={openPassword}
+        onClose={() => setOpenPassword(false)}
+      />
     </div>
   );
 };
