@@ -2,6 +2,7 @@
   padding: 12px;
   margin-left: 10px;
   font-family: Arial, sans-serif;
+  width: 100%;
 }
 
 .tabs-wrapper {
@@ -31,12 +32,13 @@
 }
 
 .tab.active {
-  background-color: #007bff;
+  // background-color: #462aff;
+  background-color: white;
   color: white;
 }
 
 .add-btn {
-  background-color: #007bff;
+  background-color: #462aff;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -108,7 +110,7 @@
 
 .clear-btn,
 .apply-btn {
-  background-color: #007bff;
+  background-color: #462aff;
   color: white;
   padding: 5px 10px;
   border: none;
@@ -144,7 +146,7 @@
 }
 
 .teacher-table th {
-  background-color: #f5f5f5;
+  color: gray;
 }
 
 .datetime {
@@ -238,7 +240,7 @@ textarea {
 }
 
 .modal-actions button {
-  background-color: #007bff;
+  background-color: #462aff;
   color: white;
   padding: 10px 15px;
   border: none;
