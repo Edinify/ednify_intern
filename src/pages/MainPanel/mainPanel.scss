@@ -1,6 +1,4 @@
-
-
-.main-panel{
+.main-panel {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -10,35 +8,35 @@
     width: 100%;
     height: 100%;
   }
-  .tab-container{
+  .tab-container {
     width: 96%;
     height: 100%;
     margin: 0 auto;
 
-   .tab-panel{
+    .tab-panel {
       height: 100%;
     }
   }
 }
 .active-tab {
-  background-color: #fff !important; 
-  color: #000 !important; 
+  background-color: #fff !important;
+  color: #000 !important;
   height: 100%;
   width: 100%;
 }
 
 .tab-element {
- 
   border-top-left-radius: 5px !important;
   border-top-right-radius: 5px !important; // Passiv tab üçün küncləri yuvarlaqlaşdırma
 }
-.MuiTabs-indicator.css-1qltlow-MuiTabs-indicator{
+.MuiTabs-indicator.css-1qltlow-MuiTabs-indicator {
   display: none;
 }
-.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected .css-1usuzwp-MuiButtonBase-root-MuiTab-root{
+.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected
+  .css-1usuzwp-MuiButtonBase-root-MuiTab-root {
   text-transform: capitalize !important; // Tab adını kiçik hərflərlə göstərmək üçün
 }
-.MuiBox-root.css-19kzrtu{
+.MuiBox-root.css-19kzrtu {
   width: 100%;
   padding: 0px;
   height: 100%;
