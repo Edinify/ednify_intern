@@ -38,6 +38,11 @@
       padding: 5px 10px;
       width: 280px;
     }
+    @media screen and (max-width: 900px) {
+      .search-container {
+        width: 200px;
+      }
+    }
     .search-icon {
       font-size: 20px;
       color: #8c8c8c;
@@ -67,6 +72,11 @@
           padding: 5px;
           font-size: 16px;
           color: #8c8c8c;
+        }
+      }
+      @media screen and (max-width: 900px) {
+        .select-container {
+          width: 200px;
         }
       }
     }

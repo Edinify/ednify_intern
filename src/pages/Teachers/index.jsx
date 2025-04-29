@@ -31,6 +31,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import EditIcon from "@mui/icons-material/Edit";
 import { useTranslation } from "react-i18next";
+import TeachersTable from "../../components/TeachersTable/index.jsx";
 import "./../../i18n.js";
 import "./teachers.scss";
 const styleadd = {
@@ -469,113 +470,12 @@ const Teachers = () => {
         </div>
       </div>
       <div className="teachers-section">
-        <TableContainer component={Paper} elevation={0}>
-          <Table sx={{ "& td, & th": { padding: "10px 20px" } }}>
-            <TableHead>
-              <TableRow>
-                <TableCell sx={{ color: "grey" }}>
-                  {t("Teacher name")}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  {t("Class")}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  {t("Email")}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  {t("Mobile number")}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  {t("Salary")}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                ></TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                ></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.teacherName}>
-                  <TableCell>{row.teacherName}</TableCell>
-                  <TableCell
-                    sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
-                  >
-                    {row.className}
-                  </TableCell>
-                  <TableCell
-                    sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
-                  >
-                    {row.email}
-                  </TableCell>
-                  <TableCell
-                    sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
-                  >
-                    {row.mobileNumber}
-                  </TableCell>
-                  <TableCell
-                    sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
-                  >
-                    {row.salary}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                      padding: "5px !important",
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    }}
-                    align="center"
-                    onClick={() => setOpenMore(true)}
-                  >
-                    More
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                      padding: "1px !important",
-                    }}
-                    align="center"
-                  >
-                    <IconButton
-                      onClick={(e) => handleMenuClick(e, row.teacherName)}
-                    >
-                      <MoreVertIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <TeachersTable
+          rows={rows}
+          t={t}
+          setOpenMore={setOpenMore}
+          handleMenuClick={handleMenuClick}
+        />
         <Menu
           anchorEl={anchorEl}
           open={openOption}
@@ -895,7 +795,12 @@ const Teachers = () => {
               position: "absolute",
               bottom: 0,
               right: 0,
-              width: 400,
+              width: {
+                md: "50%",
+                lg: 400,
+                xl: 500,
+              },
+              height: "100%",
               bgcolor: "background.paper",
               boxShadow: 10,
               p: 2,
