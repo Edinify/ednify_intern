@@ -18,6 +18,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useTranslation } from "react-i18next";
+import SalaryTable from "../../components/SalaryTable/index.jsx";
 import "./../../i18n.js";
 import "./salary.scss";
 
@@ -140,7 +141,16 @@ const Salary = () => {
         </div>
       </div>
       <div className="salary-section">
-        <TableContainer component={Paper} elevation={0}>
+        <SalaryTable
+          rows={rows}
+          t={t}
+          hoveredBonus={hoveredBonus}
+          setHoveredBonus={setHoveredBonus}
+          handleOpenEdit={handleOpenEdit}
+          handleOpenAdd={handleOpenAdd}
+        />
+
+        {/* <TableContainer component={Paper} elevation={0}>
           <Table sx={{ "& td, & th": { padding: "10px 20px" } }}>
             <TableHead>
               <TableRow>
@@ -278,7 +288,7 @@ const Salary = () => {
               ))}
             </TableBody>
           </Table>
-        </TableContainer>
+        </TableContainer> */}
 
         <Popover
           open={openAdd}
