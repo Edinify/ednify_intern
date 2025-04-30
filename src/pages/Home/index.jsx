@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Slider from "@mui/material/Slider";
 import "./Dashboard.scss";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+
 import {
   LineChart,
   Line,
@@ -73,13 +75,16 @@ const Dashboard = () => {
             <p className="title">Təsdiqlənmiş dərslər</p>
             <p className="value">77</p>
           </div>
+          <CalendarTodayIcon className="calendar" />
         </div>
+
         <div className="status-box cancelled">
           <div className="icon">❌</div>
           <div className="info">
             <p className="title">Ləğv edilmiş dərslər</p>
             <p className="value">19</p>
           </div>
+          <CalendarTodayIcon className="calendar" />
         </div>
         <div className="status-box pending">
           <div className="icon">❓</div>
@@ -87,6 +92,9 @@ const Dashboard = () => {
             <p className="title">Baxılmamış dərslər</p>
             <p className="value">2</p>
           </div>
+          <span>
+            <b>...</b>
+          </span>
         </div>
 
         <div className="subjects-statistics">
@@ -118,7 +126,6 @@ const Dashboard = () => {
           <div className="heard-header">
             <h4>Bizi haradan eşidiblər?</h4>
           </div>
-
           <div className="heard-list">
             {filteredHeardFrom.map((item, index) => {
               const colors = {
