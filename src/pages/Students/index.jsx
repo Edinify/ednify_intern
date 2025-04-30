@@ -495,7 +495,7 @@ const Students = () => {
           rows={rows}
           t={t}
           setOpenMore={setOpenMore}
-          handleMenuClick={handleMenuClick}
+          handleOpenEdit={handleOpenEdit}
         />
         <Menu
           anchorEl={anchorEl}
