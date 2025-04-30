@@ -123,11 +123,11 @@ const Salary = () => {
         </div>
 
         <div className="filter-container">
-          <div className="date-picker">
+          <div className="date-pickerr">
             <label>{t("From")}</label>
             <input type="date" />
           </div>
-          <div className="date-picker">
+          <div className="date-pickerr">
             <label>{t("To")}</label>
             <input type="date" />
           </div>

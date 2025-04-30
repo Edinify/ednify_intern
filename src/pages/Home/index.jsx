@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Slider from "@mui/material/Slider";
-import "./Dashboard.scss";
+import "./home.scss";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 
 import {

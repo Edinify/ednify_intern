@@ -78,9 +78,22 @@
     display: flex;
     gap: 10px;
   }
-  .date-picker {
+  .date-pickerr {
     margin: 0;
     background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+    color: rgb(99, 99, 99);
+    padding: 5px;
+    input {
+      border: none;
+    }
+    label {
+      font-size: 14px;
+      padding-right: 5px;
+    }
   }
   .salary-section {
     width: 100%;

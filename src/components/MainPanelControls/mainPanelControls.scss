@@ -1,4 +1,4 @@
-@use "../../styles/variables.scss"  as *;
+@use "../../styles/variables.scss" as *;
 
 .schedule-controls {
   width: 100%;
@@ -30,18 +30,16 @@
         background-repeat: no-repeat;
         background-position: right 12px center;
         background-size: 24px;
-      
+
         &.placeholder {
           color: grey;
         }
         &:focus {
-            outline: none;
-            box-shadow: none;
-            border: none;
-          }
+          outline: none;
+          box-shadow: none;
+          border: none;
+        }
       }
-    
-      
     }
   }
 
@@ -73,9 +71,7 @@
         color: $neutral900;
         cursor: pointer;
         padding-right: 0px;
-       
       }
-     
     }
   }
 
