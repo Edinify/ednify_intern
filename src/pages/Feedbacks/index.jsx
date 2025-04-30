@@ -4,6 +4,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import FeedbackTeacher from "../../components/FeedbackTeacher";
+import { useTranslation } from "react-i18next";
+import "./../../i18n.js";
 import "./feedbacks.scss";
 import FeedbackStudent from "../../components/FeedbackStudent";
 function CustomTabPanel(props) {
@@ -36,13 +38,14 @@ function a11yProps(index) {
 }
 
 const Feedbacks = () => {
+  const { t } = useTranslation();
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  console.log(value);
   return (
     <>
       <Box sx={{ width: "100%", height: "100%" }} className="main-panel">
@@ -54,14 +57,14 @@ const Feedbacks = () => {
               aria-label="basic tabs example"
             >
               <Tab
-                label="Teacher"
+                label={t("Teacher")}
                 {...a11yProps(0)}
                 className={`${
                   value == 0 ? "active-tabS" : "inactive-tabS"
                 } tab-element col-1`}
               />
               <Tab
-                label="Student"
+                label={t("Student")}
                 {...a11yProps(1)}
                 className={`${
                   value == 1 ? "active-tabS" : "inactive-tabS"

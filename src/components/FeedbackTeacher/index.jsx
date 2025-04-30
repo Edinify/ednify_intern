@@ -23,6 +23,8 @@ import Popover from "@mui/material/Popover";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { useTranslation } from "react-i18next";
+import "./../../i18n.js";
 import "./feedbackTeacher.scss";
 function createData(teacherName, aboutWho, feedback, date) {
   return {
@@ -80,6 +82,7 @@ const styledelete = {
   gap: 2,
 };
 const FeedbackTeacher = () => {
+  const { t } = useTranslation();
   const [anchorElAdd, setAnchorElAdd] = useState(null);
   const [hoveredBonus, setHoveredBonus] = useState(null);
 
@@ -130,23 +133,27 @@ const FeedbackTeacher = () => {
       <div className="search-section">
         <div className="search-container">
           <SearchIcon className="search-icon" />
-          <input type="text" placeholder="Search" className="search-input" />
+          <input
+            type="text"
+            placeholder={t("Search")}
+            className="search-input"
+          />
         </div>
 
         <div className="filter-container">
           <div className="date-picker">
-            <label>From</label>
+            <label>{t("From")}</label>
             <input type="date" />
           </div>
           <div className="date-picker">
-            <label>To</label>
+            <label>{t("To")}</label>
             <input type="date" />
           </div>
           <div>
-            <button className="clear-button">Clear all</button>
+            <button className="clear-button">{t("Clear all")}</button>
           </div>
           <div>
-            <button className="apply-button">Apply</button>
+            <button className="apply-button">{t("Apply")}</button>
           </div>
         </div>
       </div>
@@ -159,14 +166,8 @@ const FeedbackTeacher = () => {
           <Table sx={{ "& td, & th": { padding: "10px 20px" } }}>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ color: "grey" }}>Teacher name</TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  About who (student)
+                <TableCell sx={{ color: "grey" }}>
+                  {t("Teacher name")}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -174,7 +175,7 @@ const FeedbackTeacher = () => {
                     borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                  Feedback
+                  {t("About who (student)")}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -182,7 +183,15 @@ const FeedbackTeacher = () => {
                     borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                  Date
+                  {t("Feedback")}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    color: "grey",
+                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  {t("Date")}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -255,17 +264,17 @@ const FeedbackTeacher = () => {
           }}
         >
           <Typography variant="h6" sx={{ textAlign: "center" }}>
-            Add bonus
+            {t("Add bonus")}
           </Typography>
           <TextField
-            label="Bonus amount"
+            label={t("Bonus amount")}
             variant="outlined"
             InputProps={{
               endAdornment: <InputAdornment position="end">m</InputAdornment>,
             }}
           />
           <TextField
-            label="Comment"
+            label={t("Comment")}
             multiline
             rows={4}
             fullWidth
@@ -284,7 +293,7 @@ const FeedbackTeacher = () => {
             <CloseIcon />
           </IconButton>
           <div className="button-container">
-            <button className="save-button">Save</button>
+            <button className="save-button">{t("Save")}</button>
           </div>
         </Popover>
 
@@ -309,17 +318,17 @@ const FeedbackTeacher = () => {
           }}
         >
           <Typography variant="h6" sx={{ textAlign: "center" }}>
-            Edit Bonus
+            {t("Edit bonus")}
           </Typography>
           <TextField
-            label="Bonus amount"
+            label={t("Bonus amount")}
             variant="outlined"
             InputProps={{
               endAdornment: <InputAdornment position="end">m</InputAdornment>,
             }}
           />
           <TextField
-            label="Comment"
+            label={t("Comment")}
             multiline
             rows={4}
             fullWidth
@@ -346,23 +355,24 @@ const FeedbackTeacher = () => {
               <DeleteOutlineIcon className="delete-btn" />
             </IconButton>
             <div className="button-container">
-              <button className="save-button">Save</button>
+              <button className="save-button">{t("Save")}</button>
             </div>
           </div>
         </Popover>
         <Modal open={openDelete} onClose={handleCloseDelete}>
           <Box sx={styledelete}>
             <Typography sx={{ textAlign: "center" }}>
-              Are you sure you want to remove the "
-              {selectedTeacher.split(" ")[0]}" teacher bonus?
+              {t("ConfirmDeleteBonus", {
+                name: selectedTeacher.split(" ")[0],
+              })}
             </Typography>
             <Box
               sx={{ display: "flex", mt: 2, justifyContent: "space-around" }}
             >
               <button className="cancel-button" onClick={handleCloseDelete}>
-                Cancel
+                {t("Cancel")}
               </button>
-              <button className="delete-button">Delete</button>
+              <button className="delete-button">{t("Delete")}</button>
             </Box>
           </Box>
         </Modal>

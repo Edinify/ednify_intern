@@ -17,7 +17,13 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
 import FeedbackIcon from "@mui/icons-material/Feedback";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTranslation } from "react-i18next";
+import LogoTransparent from "./../../components/LogoTransparent";
+import LogoTablet from "./../../components/LogoTablet";
 import "./sidebar.scss";
+import "./../../i18n.js";
 
 const menuItems = [
   { text: "Dashboard", path: "/", icon: <DashboardIcon /> },
@@ -33,12 +39,17 @@ const menuItems = [
 ];
 
 export default function Sidebar() {
+  const { t } = useTranslation();
   const location = useLocation();
+  const theme = useTheme();
+  const isTabletOrMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const drawerWidth = isTabletOrMobile ? 64 : 210;
+
   const DrawerList = (
-    <Box sx={{ width: 200 }} role="presentation">
+    <Box sx={{ width: drawerWidth }} role="presentation">
       <List>
-        {menuItems.map((item, index) => (
-          <ListItem key={item.text} disablePadding>
+        {menuItems.map((item) => (
+          <ListItem key={item.text} disablePadding className="list-item">
             <ListItemButton
               component={Link}
               to={item.path}
@@ -47,12 +58,12 @@ export default function Sidebar() {
               <ListItemIcon>
                 {React.cloneElement(item.icon, { className: "custom-icon" })}
               </ListItemIcon>
-              <ListItemText
-                primary={item.text}
-                primaryTypographyProps={{
-                  fontWeight: 700,
-                }}
-              />
+              {!isTabletOrMobile && (
+                <ListItemText
+                  primary={t(item.text)}
+                  primaryTypographyProps={{ fontWeight: 700 }}
+                />
+              )}
             </ListItemButton>
           </ListItem>
         ))}
@@ -62,18 +73,35 @@ export default function Sidebar() {
 
   return (
     <div className="mui-drawer">
-      <Drawer open={true} variant="permanent">
-        <div className="logo">LOGO</div>
-        <div className="personal-info">
-          <img
-            src="https://i.pinimg.com/736x/f3/51/c7/f351c7d0a2e54acf12eba031d49bf783.jpg"
-            alt=""
-            height={"70px"}
-            style={{ borderRadius: "8px" }}
-          />
-          <p className="profile-name">Nargiz Aliyeva</p>
-          <p className="profile-email">nargiz@gmail.com</p>
+      <Drawer
+        open
+        variant="permanent"
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          [`& .MuiDrawer-paper`]: {
+            width: drawerWidth,
+            boxSizing: "border-box",
+          },
+        }}
+      >
+        <div className="logo">
+          {isTabletOrMobile ? <LogoTablet /> : <LogoTransparent />}
         </div>
+
+        {!isTabletOrMobile && (
+          <div className="personal-info">
+            <img
+              src="https://i.pinimg.com/736x/f3/51/c7/f351c7d0a2e54acf12eba031d49bf783.jpg"
+              alt=""
+              height={"70px"}
+              style={{ borderRadius: "8px" }}
+            />
+            <p className="profile-name">Nargiz Aliyeva</p>
+            <p className="profile-email">nargiz@gmail.com</p>
+          </div>
+        )}
+
         {DrawerList}
       </Drawer>
     </div>

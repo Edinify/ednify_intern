@@ -17,8 +17,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-
+import { useTranslation } from "react-i18next";
+import "./../../i18n.js";
 import "./classes.scss";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -48,6 +50,8 @@ const styledelete = {
   gap: 2,
 };
 const Classes = () => {
+  const { t } = useTranslation();
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -92,11 +96,15 @@ const Classes = () => {
         <div className="search-section">
           <div className="search-container">
             <SearchIcon className="search-icon" />
-            <input type="text" placeholder="Search" className="search-input" />
+            <input
+              type="text"
+              placeholder={t("Search")}
+              className="search-input"
+            />
           </div>
           <div>
             <button className="add-button" onClick={handleOpen}>
-              + Add
+              + {t("Add")}
             </button>
             <Modal
               open={open}
@@ -116,16 +124,16 @@ const Classes = () => {
                   <CloseIcon />
                 </IconButton>
                 <Typography variant="h6" sx={{ textAlign: "center" }}>
-                  Add class
+                  {t("Add Class")}
                 </Typography>
                 <TextField
                   id="outlined-basic"
-                  label="Class name"
+                  label={t("Class name")}
                   variant="outlined"
                   className="outlined-basic"
                 />
                 <div className="button-container">
-                  <button className="create-button">Create</button>
+                  <button className="create-button">{t("Create")}</button>
                 </div>
               </Box>
             </Modal>
@@ -136,7 +144,9 @@ const Classes = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ color: "grey" }}>Class name</TableCell>
+                  <TableCell sx={{ color: "grey" }}>
+                    {t("Class name")}
+                  </TableCell>
                   <TableCell
                     align="right"
                     sx={{
@@ -184,9 +194,9 @@ const Classes = () => {
               "& .MuiPaper-root": { width: "150px" },
             }}
           >
-            <MenuItem onClick={handleOpenEdit}>Edit</MenuItem>
+            <MenuItem onClick={handleOpenEdit}>{t("Edit")}</MenuItem>
             <MenuItem onClick={handleOpenDelete} sx={{ color: "red" }}>
-              Delete
+              {t("Delete")}
             </MenuItem>
           </Menu>
 
@@ -203,16 +213,16 @@ const Classes = () => {
                 <CloseIcon />
               </IconButton>
               <Typography variant="h6" sx={{ textAlign: "center" }}>
-                Edit Class
+                {t("Edit Class")}
               </Typography>
               <TextField
                 fullWidth
-                label="Class name"
+                label={t("Class name")}
                 variant="outlined"
                 defaultValue={selectedClass}
               />
               <div className="button-container">
-                <button className="create-button">Save</button>
+                <button className="create-button">{t("Save")}</button>
               </div>
             </Box>
           </Modal>
@@ -220,16 +230,16 @@ const Classes = () => {
           <Modal open={openDelete} onClose={handleCloseDelete}>
             <Box sx={styledelete}>
               <Typography sx={{ textAlign: "center" }}>
-                Are you sure you want to delete the class?
+                {t("Are you sure you want to delete the class?")}
               </Typography>
               <Box
                 sx={{ display: "flex", mt: 2, justifyContent: "space-around" }}
               >
                 <button className="cancel-button" onClick={handleCloseDelete}>
-                  Cancel
+                  {t("Cancel")}
                 </button>
                 <button className="delete-button" onClick={handleCloseDelete}>
-                  Delete
+                  {t("Delete")}
                 </button>
               </Box>
             </Box>

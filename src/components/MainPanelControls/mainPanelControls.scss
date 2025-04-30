@@ -1,0 +1,97 @@
+@use "../../styles/variables.scss"  as *;
+
+.schedule-controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 24px;
+
+  .dropdown-wrapper {
+    width: 42%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    .control-dropdown {
+      width: 100%;
+      .custom-select {
+        background-color: $neutral100;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 16px;
+        font-weight: 600;
+        color: $neutral900;
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 24px;
+      
+        &.placeholder {
+          color: grey;
+        }
+        &:focus {
+            outline: none;
+            box-shadow: none;
+            border: none;
+          }
+      }
+    
+      
+    }
+  }
+
+  .dateP-wrapper {
+    width: 42%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    .date-picker {
+      width: 100%;
+      background-color: #f1f1f1;
+      padding: 6px 10px;
+      height: 41px;
+      border-radius: 8px;
+      margin: 0px;
+
+      label {
+        margin-right: 8px;
+        color: $neutral600;
+        font-size: 14px;
+      }
+      input[type="date"] {
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 16px;
+        color: $neutral900;
+        cursor: pointer;
+        padding-right: 0px;
+       
+      }
+     
+    }
+  }
+
+  .button-wrapper {
+    width: 16%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    .clear-button {
+      color: gray;
+    }
+
+    .apply-button {
+      background-color: #3a0ca3;
+      color: white;
+    }
+  }
+}

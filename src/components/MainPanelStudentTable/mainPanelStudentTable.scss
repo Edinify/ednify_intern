@@ -1,0 +1,35 @@
+.schedule-table .time-slot {
+  position: sticky;
+  left: 0;
+  background-color: white; /* or match your table background */
+  z-index: 2; /* make sure it stays above normal cells */
+  border-right: 1px solid #ccc; /* optional for a nice divider */
+}
+.schedule-table {
+  width: 100%;
+  table-layout: fixed !important; /* Important for making cells equal width */
+}
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+  position: relative;
+}
+.schedule-table {
+  width: 100%;
+  min-width: 1200px; /* Add a min-width if you want scrolling to happen */
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.time-slot {
+  position: sticky;
+  left: 0;
+  background: white;
+  z-index: 3;
+  border-right: 1px solid #ccc;
+}
+thead th:first-child {
+  position: sticky;
+  left: 0;
+  background: white;
+  z-index: 5;
+}

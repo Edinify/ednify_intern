@@ -2,13 +2,26 @@
 
 .schedule-container {
     width: 100%;
-    margin-top: 24px;
-    height: 100%;
+    padding: 24px 0px;
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
     .table-wrapper {
+
         border-radius: 12px;
         height: 100%;
         overflow: hidden; 
-        border: 1px solid $neutral500;
+        overflow-x:auto;
+        border: 1px solid $neutral500;   
+        max-width: calc(120px * 8); // scroll ehtiyacı olduqda bu işə düşəcək
+        overflow-x: auto;
+        width: 100%;
+        &.scrollable {
+          table.schedule-table {
+            min-width: calc(120px * 15); // scroll üçün kifayət qədər genişlik
+          }}
+        
+       
 
         table.schedule-table {
             width: 100%;
@@ -17,6 +30,8 @@
             overflow: hidden; 
             border: 1px solid $neutral500; 
             border-collapse: collapse; 
+            table-layout: fixed;
+            min-width: calc(120px * 8);
             th, td {
                 border: 1px solid $neutral500; 
                 padding: 12px;
@@ -58,14 +73,16 @@ color: $neutral700;
             }
 
             .time-slot{
-                max-width: 52px;
+                max-width: 48px;
                 padding: 12px;
                 font-weight: 600;
                 font-size: 14px;
                 line-height: 100%;
                 letter-spacing: 0%;
                 text-align: center;
-                
+                span{
+                    display: block;
+                }
             }
 
             .day-off{
@@ -87,6 +104,21 @@ color: $neutral700;
   
   .confirmed {
     background-color: $confirmed;
+    color: #000;
+  }
+
+  .present {
+    background-color: #D4FFBF; // light green
+    color: #000;
+  }
+  
+  .absent {
+    background-color: #FFCED1; // light red
+    color: #000;
+  }
+  
+  .dont-attend {
+    background-color: #FEECB4; // light yellow
     color: #000;
   }
   
@@ -116,11 +148,27 @@ color: $neutral700;
         align-items: center;
         margin-top: 4px;
       }
+
+
+      .pagination {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+    
+        button {
+          padding: 4px 10px;
+          background: #eee;
+          border: none;
+          cursor: pointer;
+    
+          &.active {
+            background: #ccc;
+          }
+        }
+    
+        @media (max-width: 1024px) {
+          display: none;
+        }
+      }
   }
-  
-
-  
-
-  
-
-  
