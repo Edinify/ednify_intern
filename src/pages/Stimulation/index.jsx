@@ -1,88 +1,92 @@
 import React, { useState } from "react";
 import "./stimulation.scss";
+import TextField from "@mui/material/TextField";
 
-const data = [
+const initialFines = [
   {
     name: "Agababa Baghirov",
     type: "Verbal warning",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    date: "23.08.2023",
+    date: "2023-08-23",
   },
   {
     name: "Shahin Mammadov",
     type: "Written warning",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    date: "21.08.2023",
+    date: "2023-08-21",
   },
   {
     name: "Nargiz Aliyeva",
     type: "Reproach",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    date: "12.07.2023",
+    date: "2023-07-12",
   },
   {
     name: "Lala Suleymanlı",
     type: "Severe reproach",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    date: "14.07.2023",
+    date: "2023-07-14",
   },
   {
     name: "Eyyub Agalarov",
     type: "Reproach",
     comment:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae interdum urna. Etiam vitae risus viverra, commodo arcu ac, elementum felis.",
-    date: "07.07.2023",
+    date: "2023-07-07",
   },
 ];
 
-const teachers = [
+const initialBonuses = [
   {
     name: "Agababa Baghirov",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     bonus: "50 AZN",
-    date: "23.08.2023",
+    date: "2023-08-23",
   },
   {
     name: "Shahin Mammadov",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     bonus: "125 AZN",
-    date: "21.08.2023",
+    date: "2023-08-21",
   },
   {
     name: "Nargiz Aliyeva",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     bonus: "75 AZN",
-    date: "12.07.2023",
+    date: "2023-07-12",
   },
   {
     name: "Lala Suleymanlı",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     bonus: "240 AZN",
-    date: "14.07.2023",
+    date: "2023-07-14",
   },
   {
     name: "Eyyub Agalarov",
     comment:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae interdum urna. Etiam vitae risus viverra, commodo arcu ac, elementum felis.",
     bonus: "80 AZN",
-    date: "07.07.2023",
+    date: "2023-07-07",
   },
 ];
 
 function Stimulation() {
-  const [openMenu, setOpenMenu] = useState(null);
   const [activeTab, setActiveTab] = useState("Fine");
   const [search, setSearch] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const [editIndex, setEditIndex] = useState(null);
-  const [modalData, setModalData] = useState({
+  const [modalVisible, setModalVisible] = useState(false);
+  const [editData, setEditData] = useState(null);
+  const [modalType, setModalType] = useState(""); // "Bonus" or "Fine"
+  const [teachers, setTeachers] = useState(initialBonuses);
+  const [fines, setFines] = useState(initialFines);
+
+  const [newEntry, setNewEntry] = useState({
     name: "",
     comment: "",
     bonus: "",
     type: "",
-    commitment: "",
+    date: "",
   });
 
   const clearAll = () => {
@@ -91,107 +95,57 @@ function Stimulation() {
     setToDate("");
   };
 
-  const handleEdit = (index) => {
-    setEditIndex(index);
-    const entry = activeTab === "Bonus" ? teachers[index] : data[index];
-    setModalData({
-      name: entry.name,
-      comment: entry.comment,
-      bonus: entry.bonus || "",
-      type: entry.type || "",
-      commitment: entry.commitment || "",
+  const openEditModal = (entry, type) => {
+    setModalVisible(true);
+    setEditData(entry);
+    setModalType(type);
+  };
+
+  const openAddModal = () => {
+    setModalVisible(true);
+    setEditData(null);
+    setModalType(activeTab);
+    setNewEntry({
+      name: "",
+      comment: "",
+      bonus: "",
+      type: "",
+      date: "",
     });
-    setShowModal(true);
   };
 
-  const handleDelete = () => {
-    if (activeTab === "Bonus") {
-      teachers.splice(editIndex, 1);
-    } else {
-      data.splice(editIndex, 1);
+  const closeModal = () => {
+    setModalVisible(false);
+    setEditData(null);
+    setModalType("");
+  };
+
+  const deleteEntry = () => {
+    if (modalType === "Bonus") {
+      setTeachers(teachers.filter((t) => t.name !== editData.name));
+    } else if (modalType === "Fine") {
+      setFines(fines.filter((entry) => entry.name !== editData.name));
     }
-    setShowModal(false);
-    setEditIndex(null);
+    closeModal();
   };
 
-  const Modal = ({ onClose }) => {
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      setShowModal(false);
-      setEditIndex(null);
-    };
+  const saveChanges = () => {
+    if (editData) {
+      // Only editing functionality
+      console.log("Edit functionality placeholder");
+    } else {
+      // Add new entry
+      if (modalType === "Bonus") {
+        setTeachers([...teachers, newEntry]);
+      } else if (modalType === "Fine") {
+        setFines([...fines, newEntry]);
+      }
+    }
+    closeModal();
+  };
 
-    return (
-      <div className="modal-overlay" onClick={onClose}>
-        <div className="modal" onClick={(e) => e.stopPropagation()}>
-          <button className="close-btn" onClick={onClose}>
-            ×
-          </button>
-          <h2>
-            {editIndex === null ? `Add ${activeTab}` : `Edit ${activeTab}`}
-          </h2>
-          <form className="modal-form" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Teacher name"
-              value={modalData.name}
-              onChange={(e) =>
-                setModalData({ ...modalData, name: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              placeholder="Comment"
-              value={modalData.comment}
-              onChange={(e) =>
-                setModalData({ ...modalData, comment: e.target.value })
-              }
-            />
-            {activeTab === "Bonus" ? (
-              <input
-                type="text"
-                placeholder="Bonus (e.g. 100 AZN)"
-                value={modalData.bonus}
-                onChange={(e) =>
-                  setModalData({ ...modalData, bonus: e.target.value })
-                }
-              />
-            ) : (
-              <>
-                <input
-                  type="text"
-                  placeholder="Fine type (e.g. Reproach)"
-                  value={modalData.type}
-                  onChange={(e) =>
-                    setModalData({ ...modalData, type: e.target.value })
-                  }
-                />
-                <input
-                  type="text"
-                  placeholder="Commitment"
-                  value={modalData.commitment}
-                  onChange={(e) =>
-                    setModalData({ ...modalData, commitment: e.target.value })
-                  }
-                />
-              </>
-            )}
-          </form>
-          <div>
-            <div className="savedelete">
-              <div className="save">
-                <button type="submit">Save</button>
-              </div>
-              <div>
-                <button className="delete-btn" onClick={handleDelete}>
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+  const handleNewEntryChange = (field, value) => {
+    setNewEntry({ ...newEntry, [field]: value });
   };
 
   return (
@@ -211,129 +165,163 @@ function Stimulation() {
             Fine
           </div>
         </div>
-        <button className="add-btn" onClick={() => setShowModal(true)}>
+        <button className="add-btn" onClick={openAddModal}>
           + Add
         </button>
       </div>
 
-      <div className="tab-content">
-        {activeTab === "Bonus" && (
-          <div>
-            <div className="filter-bar">
-              <div className="search-box">
-                <span className="icon">🔍</span>
-                <input type="text" placeholder="Search" />
-              </div>
-              <div></div>
-
-              <div className="date-picker">
-                <label>From</label>
-                <input type="date" />
-              </div>
-
-              <div className="date-picker">
-                <label>To</label>
-                <input type="date" />
-              </div>
-
-              <button className="clear-btn">Clear all</button>
-              <button className="apply-btn">Apply</button>
-            </div>
-
-            <div className="teacher-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Teacher name</th>
-                    <th>Comment</th>
-                    <th>Bonus</th>
-                    <th>Date</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {teachers.map((t, index) => (
-                    <tr key={index}>
-                      <td>{t.name}</td>
-                      <td>{t.comment}</td>
-                      <td>{t.bonus}</td>
-                      <td>{t.date}</td>
-                      <td className="menu-cell">
-                        <div className="menu-wrapper">
-                          <span
-                            className="dots"
-                            onClick={() => handleEdit(index)}
-                          >
-                            ⋮
-                          </span>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+      <div className="tab-contentt">
+        <div className="filter-bar">
+          <div className="searchpart">
+            <div className="search-box">
+              <span className="icon">🔍</span>
+              <input
+                type="text"
+                placeholder="Search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
             </div>
           </div>
-        )}
 
-        {activeTab === "Fine" && (
-          <div>
-            <div className="filter-bar">
-              <div className="search-box">
-                <span className="icon">🔍</span>
-                <input type="text" placeholder="Search" />
-              </div>
-              <div></div>
-
-              <div className="date-picker">
-                <label>From</label>
-                <input type="date" />
-              </div>
-
-              <div className="date-picker">
-                <label>To</label>
-                <input type="date" />
-              </div>
-
-              <button className="clear-btn">Clear all</button>
-              <button className="apply-btn">Apply</button>
-            </div>
-            <div className="warnings-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Teacher name</th>
-                    <th>Fine type</th>
-                    <th>Comment</th>
-                    <th>Date</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.map((entry, index) => (
-                    <tr key={index}>
-                      <td>{entry.name}</td>
-                      <td>{entry.type}</td>
-                      <td>{entry.comment}</td>
-                      <td>{entry.date}</td>
-                      <td className="actions">
-                        <span
-                          className="dots"
-                          onClick={() => handleEdit(index)}
-                        >
-                          ⋮
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+          <div className="date-picker">
+            <label>From</label>
+            <input
+              type="date"
+              value={fromDate}
+              onChange={(e) => setFromDate(e.target.value)}
+            />
           </div>
-        )}
+
+          <div className="date-picker">
+            <label>To</label>
+            <input
+              type="date"
+              value={toDate}
+              onChange={(e) => setToDate(e.target.value)}
+            />
+          </div>
+
+          <button className="clear-btn" onClick={clearAll}>
+            Clear all
+          </button>
+          <button className="apply-btn">Apply</button>
+        </div>
+
+        <div className="teacher-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Teacher name</th>
+                {activeTab === "Fine" ? <th>Fine type</th> : <th>Bonus</th>}
+                <th>Comment</th>
+                <th>Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {(activeTab === "Fine" ? fines : teachers).map((entry, index) => (
+                <tr key={index}>
+                  <td>{entry.name}</td>
+                  {activeTab === "Fine" ? (
+                    <td>{entry.type}</td>
+                  ) : (
+                    <td>{entry.bonus}</td>
+                  )}
+                  <td>{entry.comment}</td>
+                  <td className="datetime">{entry.date}</td>
+                  <td className="menu-cell">
+                    <div className="menu-wrapper">
+                      <span
+                        className="dots"
+                        onClick={() => openEditModal(entry, activeTab)}
+                      >
+                        ⋮
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      {showModal && <Modal onClose={() => setShowModal(false)} />}
+      {modalVisible && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>
+              {editData ? "Edit" : "Add"} {modalType}
+            </h2>
+            {/* <label>Teacher Name:</label> */}
+            <TextField
+              className="textfield"
+              label={"Teacher"}
+              id="margin-dense"
+              margin="dense"
+            />
+            {/* <input
+              type="text"
+              value={editData ? editData.name : newEntry.name}
+              onChange={(e) =>
+                !editData && handleNewEntryChange("name", e.target.value)
+              }
+              readOnly={!!editData}
+            /> */}
+            {/* 
+            <label>Comment:</label> */}
+            <TextField
+              className="textfield"
+              label={"Comment"}
+              id="margin-dense"
+              margin="dense"
+            />
+
+            {modalType === "Bonus" && (
+              <>
+                {/* <label>Bonus:</label> */}
+                <TextField
+                  className="textfield"
+                  label={"Bonus"}
+                  id="margin-dense"
+                  margin="dense"
+                />
+              </>
+            )}
+
+            {modalType === "Fine" && (
+              <>
+                {/* <label>Fine Type:</label> */}
+                <TextField
+                  className="textfield"
+                  label={"Fine Type"}
+                  id="margin-dense"
+                  margin="dense"
+                />
+                {/* <input
+                  type="text"
+                  value={editData ? editData.type : newEntry.type}
+                  onChange={(e) =>
+                    !editData && handleNewEntryChange("type", e.target.value)
+                  }
+                  readOnly={!!editData}
+                /> */}
+              </>
+            )}
+
+            <div className="modal-actions">
+              {editData && (
+                <span className="delete-icon" onClick={deleteEntry}>
+                  🗑️
+                </span>
+              )}
+              <button className="save" onClick={saveChanges}>
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

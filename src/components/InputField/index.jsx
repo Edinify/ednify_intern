@@ -4,7 +4,7 @@ import "./inputField.scss";
 const InputField = ({ type, placeholder }) => {
   return (
     <>
-      <input type={type} placeholder={placeholder} />
+      <input type={type} placeholder={placeholder} className="inputField" />
     </>
   );
 };
