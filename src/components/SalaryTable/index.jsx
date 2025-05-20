@@ -15,6 +15,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useState } from "react";
 import { Drawer } from "@mui/material";
+import "./salaryTable.scss";
 const SalaryTable = ({
   rows,
   t,
@@ -84,7 +85,7 @@ const SalaryTable = ({
               {t("Bonus")}: {selectedTeacher?.bonus}
             </Typography>
 
-            <Box mt={2} display="flex" gap={1}>
+            <Box mt={2} display="flex" gap={1} justifyContent="space-between">
               <button
                 className="edit-button"
                 onClick={(e) =>

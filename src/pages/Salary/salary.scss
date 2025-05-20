@@ -56,6 +56,14 @@
       padding: 5px 10px;
       width: 280px;
     }
+    @media screen and (max-width: 900px) {
+      .search-container {
+        width: 200px;
+      }
+      .clear-button {
+        padding: 0px;
+      }
+    }
     .search-icon {
       font-size: 20px;
       color: #8c8c8c;
@@ -67,6 +75,7 @@
       flex: 1;
       padding: 5px;
       font-size: 16px;
+      width: 50px;
     }
   }
   .class-section {

@@ -1,16 +1,6 @@
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import {
   Close as CloseIcon,
   Edit as EditIcon,
@@ -24,6 +14,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useTranslation } from "react-i18next";
+import FeedbacksStudentTable from "../FeedbacksStudentTable/index.jsx";
 import "./../../i18n.js";
 import "./feedbackStudent.scss";
 function createData(studentName, aboutWho, feedback, date) {
@@ -84,12 +75,13 @@ const styledelete = {
 const FeedbackStudent = () => {
   const { t } = useTranslation();
   const [anchorElAdd, setAnchorElAdd] = useState(null);
-  const [hoveredBonus, setHoveredBonus] = useState(null);
-
   const handleOpenAdd = (event) => {
     setAnchorElAdd(event.currentTarget);
   };
-
+  const handleMenuClick = (event, teacherName) => {
+    setAnchorEl(event.currentTarget);
+    setSelectedTeacher(teacherName);
+  };
   const handleCloseAdd = () => {
     setAnchorElAdd(null);
   };
@@ -100,15 +92,6 @@ const FeedbackStudent = () => {
   const [popoverAnchor, setPopoverAnchor] = useState(null);
   const [editRowIndex, setEditRowIndex] = useState(null);
   const [openDelete, setOpenDelete] = useState(false);
-  const handleOpenEdit = (event, rowIndex) => {
-    const buttonPosition = event.currentTarget.getBoundingClientRect();
-
-    setPopoverAnchor({
-      top: buttonPosition.bottom,
-      left: buttonPosition.left,
-    });
-    setEditRowIndex(rowIndex);
-  };
 
   const handleCloseMenu = () => {
     setAnchorEl(null);
@@ -158,88 +141,12 @@ const FeedbackStudent = () => {
         </div>
       </div>
       <div className="salary-section">
-        <TableContainer
-          component={Paper}
-          elevation={0}
-          sx={{ borderTop: "1px solid rgba(0, 0, 0, 0.1)" }}
-        >
-          <Table sx={{ "& td, & th": { padding: "10px 20px" } }}>
-            <TableHead>
-              <TableRow>
-                <TableCell sx={{ color: "grey" }}>
-                  {" "}
-                  {t("Student name")}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  {t("About who (teacher)")}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  {t("Feedback")}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  {t("Date")}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: "grey",
-                    borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                ></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row, index) => (
-                <TableRow key={row.studentName}>
-                  <TableCell>{row.studentName}</TableCell>
-                  <TableCell
-                    sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
-                  >
-                    {row.aboutWho}
-                  </TableCell>
-                  <TableCell
-                    sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
-                  >
-                    {row.feedback}
-                  </TableCell>
-                  <TableCell
-                    sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.1)" }}
-                  >
-                    {row.date}
-                  </TableCell>
-
-                  <TableCell
-                    sx={{
-                      borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-                      padding: "1px !important",
-                    }}
-                    align="center"
-                  >
-                    <IconButton
-                      onClick={(e) => handleMenuClick(e, row.teacherName)}
-                    >
-                      <MoreVertIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <FeedbacksStudentTable
+          rows={rows}
+          t={t}
+          type="teachers"
+          handleMenuClick={handleMenuClick}
+        />
 
         <Popover
           open={openAdd}
