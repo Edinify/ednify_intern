@@ -56,6 +56,14 @@
       padding: 5px 10px;
       width: 280px;
     }
+    @media screen and (max-width: 900px) {
+      .search-container {
+        width: 200px;
+      }
+      .clear-button {
+        padding: 0px;
+      }
+    }
     .search-icon {
       font-size: 20px;
       color: #8c8c8c;
@@ -67,6 +75,7 @@
       flex: 1;
       padding: 5px;
       font-size: 16px;
+      width: 50px;
     }
   }
   .class-section {
@@ -78,9 +87,22 @@
     display: flex;
     gap: 10px;
   }
-  .date-picker {
+  .date-pickerr {
     margin: 0;
     background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+    color: rgb(99, 99, 99);
+    padding: 5px;
+    input {
+      border: none;
+    }
+    label {
+      font-size: 14px;
+      padding-right: 5px;
+    }
   }
   .salary-section {
     width: 100%;
