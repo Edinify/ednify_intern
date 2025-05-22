@@ -3,6 +3,9 @@
   background-color: white;
   height: 172%;
 }
+.editclick {
+  margin-right: auto;
+}
 .stats-container {
   display: flex;
   flex-direction: column;
@@ -122,6 +125,7 @@
   align-items: center;
   margin-bottom: 16px;
   flex-wrap: wrap;
+  gap: 30px;
 
   .filter-select {
     width: 150px;
@@ -296,7 +300,7 @@
     }
 
     .add-button {
-      background: #5c6bc0;
+      background-color: #6c55ff !important;
       color: white;
       border-radius: 8px;
       text-transform: none;
@@ -348,4 +352,113 @@
       }
     }
   }
+}
+
+@media (max-width: 768px) {
+  .transaction-container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .transaction-table {
+    width: 100%;
+    table-layout: fixed;
+
+    thead th,
+    tbody td {
+      padding: 10px 8px;
+      font-size: 13px;
+      word-wrap: break-word;
+    }
+
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: 25%; // Category
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 30%; // Appointment
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+      width: 20%; // Amount
+    }
+
+    th:nth-child(4),
+    td:nth-child(4) {
+      width: 20%; // Date
+    }
+
+    th:nth-child(5),
+    td:nth-child(5) {
+      width: 5%; // Menu icon
+    }
+  }
+
+  .table-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+
+    .add-button {
+      width: 100%;
+    }
+  }
+}
+.transaction-type-toggle {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  background-color: #eaeaea;
+  border-radius: 8px;
+  overflow: hidden;
+
+  .toggle-btn {
+    padding: 8px 20px;
+    border: none;
+    background: transparent;
+    color: #888;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &.active {
+      background-color: white;
+      color: #000;
+      font-weight: 600;
+    }
+
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+
+  .delete-icon {
+    color: red !important;
+  }
+
+  button {
+    background-color: #6c55ff !important;
+    color: white !important;
+  }
+}
+
+// Optional: target the Add button in .table-controls
+.table-controls .MuiButton-root {
+  background-color: #6c55ff !important;
+  color: white !important;
 }

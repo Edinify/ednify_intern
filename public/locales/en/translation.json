@@ -64,5 +64,19 @@
   "Previous ones": "Previous ones",
   "Profile picture": "Profile picture",
   "Change password": "Change password",
-  "Logout": "Logout"
+  "Logout": "Logout",
+  "Confirmed lessons": "Confirmed lessons",
+  "Canceled lessons": "Canceled lessons",
+  "Unviewed lessons": "Unviewed lessons",
+  "Amount of students": "Amount of students",
+  "Monthly income": "Monthly income",
+  "Monthly expense": "Monthly expense",
+  "Monthly turnover": "Monthly turnover",
+  "Monthly profit": "Monthly profit",
+  "Leaderboard": "Leaderboard",
+  "Current month": "Current month",
+  "Stars": "Stars",
+  "Class statistics": "Class statistics",
+  "Where did they hear us from?": "Where did they hear us from?",
+  "Annual": "Annual"
 }

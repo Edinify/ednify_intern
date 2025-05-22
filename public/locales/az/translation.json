@@ -64,5 +64,19 @@
   "Previous ones": "Əvvəlki",
   "Profile picture": "Profil şəkli",
   "Change password": "Şifrəni dəyiş",
-  "Logout": "Çıxış et"
+  "Logout": "Çıxış et",
+  "Confirmed lessons": "Təsdiqlənmiş dərslər",
+  "Canceled lessons": "Ləğv olunmuş dərslər",
+  "Unviewed lessons": "Baxılmamış dərslər",
+  "Amount of students": "Tələbələrin sayı",
+  "Monthly income": "Aylıq mədaxil",
+  "Monthly expense": "Aylıq xərc",
+  "Monthly turnover": "Aylıq dövriyyə",
+  "Monthly profit": "Aylıq qazanc",
+  "Leaderboard:": "Uğur lövhəis",
+  "Current month": "Cari ay",
+  "Stars": "Ulduzlar",
+  "Class statistics": "Fənlərin statistikası",
+  "Where did they hear us from?": "Bizi hardan eşidiblər?",
+  "Annual": "İllik"
 }

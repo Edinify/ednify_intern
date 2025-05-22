@@ -2,6 +2,8 @@ import { useState } from "react";
 import Slider from "@mui/material/Slider";
 import "./Dashboard.scss";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import { useTranslation } from "react-i18next";
+import "./../../i18n.js";
 
 import {
   LineChart,
@@ -60,6 +62,53 @@ const heardFromData = [
 
 const Dashboard = () => {
   const [filter, setFilter] = useState("All");
+  const { t } = useTranslation();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const data = [
+    {
+      teacher: "Agababa Bagirov",
+      date: "14 Mar",
+      week: "Mon",
+      time: "10:00-11:30",
+    },
+    {
+      teacher: "Elgun Mammadeliyev",
+      date: "17 Mar",
+      week: "Thu",
+      time: "16:00-17:30",
+    },
+    {
+      teacher: "Elgun Mammadeliyev",
+      date: "02 Feb",
+      week: "Sat",
+      time: "17:30-19:00",
+    },
+    {
+      teacher: "Elgun Mammadeliyev",
+      date: "05 May",
+      week: "Mon",
+      time: "09:00-10:30",
+    },
+    {
+      teacher: "Xeyyam Omarov",
+      date: "12 Jan",
+      week: "Wed",
+      time: "11:30-13:00",
+    },
+    {
+      teacher: "Xeyyam Omarov",
+      date: "21 Nov",
+      week: "Sun",
+      time: "13:00-14:30",
+    },
+  ];
+  const groupedData = data.reduce((acc, curr) => {
+    if (!acc[curr.teacher]) acc[curr.teacher] = [];
+    acc[curr.teacher].push(curr);
+    return acc;
+  }, {});
 
   const filteredHeardFrom =
     filter === "All"
@@ -72,7 +121,7 @@ const Dashboard = () => {
         <div className="status-box confirmed">
           <div className="icon">✅</div>
           <div className="info">
-            <p className="title">Təsdiqlənmiş dərslər</p>
+            <p className="title">{t("Confirmed lessons")}</p>
             <p className="value">77</p>
           </div>
           <CalendarTodayIcon className="calendar" />
@@ -81,24 +130,83 @@ const Dashboard = () => {
         <div className="status-box cancelled">
           <div className="icon">❌</div>
           <div className="info">
-            <p className="title">Ləğv edilmiş dərslər</p>
+            <p className="title">{t("Canceled lessons")}</p>
             <p className="value">19</p>
           </div>
           <CalendarTodayIcon className="calendar" />
         </div>
-        <div className="status-box pending">
-          <div className="icon">❓</div>
-          <div className="info">
-            <p className="title">Baxılmamış dərslər</p>
-            <p className="value">2</p>
+        <div className="status-box">
+          <div className="icon-box">
+            <span className="icon">❓</span>
           </div>
-          <span>
-            <b>...</b>
-          </span>
+          <div className="text-info">
+            <p className="title">{t("Unviewed lessons")}</p>
+            <p className="count">0</p>
+          </div>
+          <div className="dots" onClick={() => setIsModalOpen(true)}>
+            ⋯
+          </div>
         </div>
 
+        {isModalOpen && (
+          <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+            <div className="modal" onClick={(e) => e.stopPropagation()}>
+              <h3>{t("Unviewed Lesson Details")}</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>{t("Teacher Name")}</th>
+                    <th>{t("Date")}</th>
+                    <th>{t("Week")}</th>
+                    <th>{t("Time")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries(groupedData).map(([teacher, lessons]) =>
+                    lessons.map((lesson, idx) => (
+                      <tr key={`${teacher}-${idx}`}>
+                        {idx === 0 && (
+                          <td rowSpan={lessons.length}>{teacher}</td>
+                        )}
+                        <td>{lesson.date}</td>
+                        <td>{lesson.week}</td>
+                        <td>{lesson.time}</td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* <div className="subjects-statistics">
+          <h4>{t("Class statistics")}</h4>
+          <ResponsiveContainer width="100%" height={200}>
+            <PieChart>
+              <Pie
+                data={subjectData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                outerRadius={70}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {subjectData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <CalendarTodayIcon className="calendar" />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </div> */}
         <div className="subjects-statistics">
-          <h4>Fənlərin statistikası</h4>
+          <h4>{t("Class statistics")}</h4>
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
               <Pie
@@ -120,30 +228,32 @@ const Dashboard = () => {
               <Legend />
             </PieChart>
           </ResponsiveContainer>
+          <CalendarTodayIcon className="calendar" />
         </div>
 
         <div className="heard-from">
           <div className="heard-header">
-            <h4>Bizi haradan eşidiblər?</h4>
+            <h4>Where did they hear us from?</h4>
           </div>
           <div className="heard-list">
             {filteredHeardFrom.map((item, index) => {
               const colors = {
-                Referral: "green",
-                Instagram: "blue",
-                Events: "orange",
-                "Outdoor advertising": "red",
-                Digər: "gray",
+                Referral: "#00C49F",
+                Instagram: "#00BFFF",
+                Events: "#FFBB28",
+                "Outdoor advertising": "#FF4C4C",
+                Digər: "#A9A9A9",
               };
               return (
                 <div className="heard-item" key={index}>
-                  <span
-                    className={`dot ${colors[item.source] || "gray"}`}
-                  ></span>
-                  <div className="details">
+                  <div className="left">
+                    <span
+                      className="dot"
+                      style={{ backgroundColor: colors[item.source] || "#ccc" }}
+                    ></span>
                     <span className="source">{item.source}</span>
-                    <span className="value">{item.value}</span>
                   </div>
+                  <span className="value">{item.value}%</span>
                 </div>
               );
             })}
@@ -155,9 +265,9 @@ const Dashboard = () => {
         <div className="part">
           <div className="chart-box">
             <div className="header">
-              <h4>Tələbələrin sayı</h4>
+              <h4>{t("Amount of students")}</h4>
               <select>
-                <option>İllik</option>
+                <option>{t("Annual")}</option>
               </select>
             </div>
             <ResponsiveContainer width="100%" height={200}>
@@ -178,22 +288,22 @@ const Dashboard = () => {
           </div>
           <div className="summary-boxes">
             <div className="summary income">
-              <div className="label">Aylıq mədaxil</div>
+              <div className="label">{t("Monthly income")}</div>
               <div className="value">1259.95</div>
               <div className="percentage positive">+36.47%</div>
             </div>
             <div className="summary expense">
-              <div className="label">Aylıq xərc</div>
+              <div className="label">{t("Monthly expense")}</div>
               <div className="value">382.54</div>
               <div className="percentage negative">-25.45%</div>
             </div>
             <div className="summary turnover">
-              <div className="label">Aylıq dövriyyə</div>
+              <div className="label">{t("Monthly turnover")}</div>
               <div className="value">2497.42</div>
               <div className="percentage positive">+98.12%</div>
             </div>
             <div className="summary profit">
-              <div className="label">Aylıq qazanc</div>
+              <div className="label">{t("Monthly profit")}</div>
               <div className="value">1453.97</div>
               <div className="percentage positive">+72.64%</div>
             </div>
@@ -202,13 +312,13 @@ const Dashboard = () => {
 
         <div className="leaderboard">
           <div className="leader-header">
-            <h4>Uğur lövhəsi</h4>
+            <h4>{t("Leaderboard")}</h4>
             <div className="filters">
               <select>
-                <option>Cari ay</option>
+                <option>{t("Current month")}</option>
               </select>
               <select>
-                <option>Ulduzlar</option>
+                <option>{t("Stars")}</option>
               </select>
             </div>
           </div>
